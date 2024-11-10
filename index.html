@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sidhant</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+
+
+<!-- style -->
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
+
+    body {
+        padding: 0px;
+        margin: 0px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1662473991701-c69c3b6bf6fb?q=80&w=1793&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center center;
+        background-size: cover;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        font-family: 'Josefin Sans', sans-serif;
+    }
+
+    #loading {
+        width: 100vw;
+        height: 100vh;
+        position: fixed;
+        background: rgb(255, 50, 50);
+        z-index: 999;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #spinner {
+        animation: rotate 0.56s infinite linear;
+        width: 50px;
+        height: 50px;
+        border: 12px solid #fff;
+        border-bottom: 12px solid rgb(255, 50, 50);
+        border-radius: 50%;
+        margin: 0;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    #box {
+        width: 100vw;
+        height: 100vh;
+        z-index: 9;
+        position: fixed;
+        top: 0;
+    }
+
+    #box div {
+        width: 16.66vw;
+        height: 100%;
+        display: inline-block;
+    }
+
+    .box1 {
+        background: rgb(255, 50, 50);
+    }
+
+    .box2 {
+        background: rgb(255, 50, 50);
+        margin-left: -5px;
+    }
+
+    #menu {
+        width: 100%;
+        text-align: center;
+        margin: 6vh 0px;
+        display: none;
+    }
+
+    #menu a {
+        margin: 0px 6%;
+        font-size: 19px;
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    #middle {
+        width: 100vw;
+        height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: fixed;
+        top: 0;
+        text-align: center;
+        z-index: 1;
+        color: #fff;
+        padding-bottom: 10vh;
+    }
+
+    #middle h1 {
+        color: rgb(255, 50, 50);
+        font-size: 70px;
+        text-decoration: underline;
+    }
+
+    #about {
+        width: 10vw;
+        height: 10vw;
+        text-align: center;
+        font-size: 25px;
+        transform: rotate(-90deg);
+        background: transparent;
+        color: #fff;
+        position: fixed;
+        left: 0;
+        bottom: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 4;
+        transition: 0.4s ease-in-out;
+        border-radius: 0px 0px 100px 100px;
+    }
+
+    #work {
+        width: 10vw;
+        height: 10vw;
+        text-align: center;
+        font-size: 25px;
+        transform: rotate(90deg);
+        background: transparent;
+        color: #fff;
+        position: fixed;
+        right: 0;
+        bottom: 40vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        z-index: 4;
+        transition: 0.4s ease-in-out;
+        border-radius: 0px 0px 100px 100px;
+    }
+
+
+
+    #about:hover {
+        background: rgba(255, 50, 50, 0.9);
+        cursor: pointer;
+    }
+
+    #work:hover {
+        background: rgba(255, 50, 50, 0.9);
+        cursor: pointer;
+    }
+
+
+
+    #middle table {
+        width: 30%;
+        margin: 6vh auto;
+    }
+
+    #middle table tr td {
+        text-align: center;
+    }
+
+    .social {
+        color: #fff;
+        font-size: 22px;
+        border-radius: 50%;
+        transition: 0.4s ease-in-out;
+        margin: 0px 8px;
+        text-align: center;
+    }
+
+    .social:hover {
+        cursor: pointer;
+        color: rgb(255, 50, 50);
+    }
+
+    .container {
+        width: 90vw;
+        height: 90vh;
+        padding: 5vh 5vw;
+        background: rgb(255, 50, 50);
+        color: #fff;
+        z-index: 9;
+        position: fixed;
+        max-height: 100vh;
+        overflow-y: auto;
+        display: none;
+    }
+
+    .container div {
+        font-size: 25px;
+        margin: 20px 0px;
+        transition: 0.4s ease-in-out;
+    }
+
+    .container div:hover {
+        cursor: pointer;
+    }
+
+    .container section {
+        margin: 8vh 0px;
+    }
+
+    #used div {
+        font-size: 14px !important;
+        display: inline-block;
+        padding: 8px 10px;
+        border: 2px solid #fff;
+        margin: 0px 10px;
+        border-radius: 50px;
+    }
+
+    #used:hover {
+        cursor: text;
+    }
+
+    #used div:hover {
+        cursor: text;
+    }
+
+    .container h1 {
+        font-size: 60px;
+        text-decoration: underline;
+    }
+
+    .container p {
+        font-size: 21px;
+    }
+
+    .btn_one {
+        font-size: 18px;
+        font-family: 'Josefin Sans', sans-serif;
+        color: #fff;
+        background: transparent;
+        border: 3px solid #fff;
+        padding: 8px 40px;
+        border-radius: 80px;
+        font-weight: bold;
+        margin: 2vh 10px;
+        transition: 0.4s ease-in-out;
+    }
+
+    .btn_one:hover {
+        cursor: pointer;
+        color: rgb(255, 50, 50);
+        background: #fff;
+    }
+
+    .btn_two {
+        font-size: 18px;
+        font-family: 'Josefin Sans', sans-serif;
+        color: rgb(255, 50, 50);
+        background: #fff;
+        border: 3px solid #fff;
+        padding: 8px 40px;
+        border-radius: 80px;
+        font-weight: bold;
+        margin: 2vh 10px;
+        transition: 0.4s ease-in-out;
+    }
+
+    .btn_two:hover {
+        cursor: pointer;
+        padding: 8px 60px;
+    }
+
+
+
+
+
+
+    ::placeholder {
+        color: #fff;
+    }
+
+    #footer {
+        color: #fff;
+        width: 92vw;
+        padding: 5vh 4vw;
+        text-align: right;
+        position: fixed;
+        z-index: 1;
+        bottom: 0;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    #footer a {
+        color: rgb(255, 50, 50);
+    }
+
+
+
+    ::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #fff;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgb(255, 50, 50);
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 50, 50, 0.8);
+    }
+
+    ::selection {
+        color: #fff;
+        background: rgb(255, 50, 50);
+    }
+
+    @media (max-width: 800px) {
+        #about {
+            display: none;
+        }
+
+        #work {
+            display: none;
+        }
+
+        #footer {
+            text-align: center;
+        }
+
+        #middle {
+            width: 90vw;
+            padding: 0px 5vw;
+        }
+
+        #middle table {
+            width: 80%;
+        }
+
+
+        #menu {
+            display: inline-block;
+        }
+
+        #onlywide {
+            display: none !important;
+        }
+
+        .box2 {
+            margin-left: 0px !important;
+        }
+
+        #box div {
+            width: 100%;
+        }
+    }
+
+
+    .repo-item h3 {
+        margin: 0 0 10px;
+        color: #2c3e50;
+    }
+
+    .repo-item a {
+        color: white;
+        text-decoration: none;
+    }
+
+    .repo-item li {
+        margin: 20px;
+    }
+</style>
+
+<!-- body -->
+
+<body>
+    <div id="loading">
+        <div id="spinner"></div>
+    </div>
+    <a id="about" onclick="showabout()" class="animated fadeIn" style="animation-delay:2.2s;">about</a>
+    <a id="work" onclick="showwork()" class="animated fadeIn" style="animation-delay:2.2s;">work</a>
+    <div id="middle" class="animated slideInDown" style="animation-delay:2.0s;">
+        <h1>Sidhant</h1>
+        <h2>Software Developer / Physicist</h2>
+        <div id="menu">
+            <a onclick="showabout()">about</a>
+            <a onclick="showwork()">work</a>
+        </div>
+        <table>
+            <tr>
+
+                <td class="animated zoomIn" style="animation-delay:2.4s;"><a href="https://x.com/vgbhuop"
+                        class="social"><i class="fab fa-twitter"></i></a></td>
+                <td class="animated zoomIn" style="animation-delay:2.6s;"><a
+                        href="https://www.reddit.com/user/Sidhant947/" class="social"><i class="fab fa-reddit"></i></a>
+                </td>
+                <td class="animated zoomIn" style="animation-delay:2.8s;"><a href="https://github.com/Sidhant947"
+                        class="social"><i class="fab fa-github"></i></a></td>
+            </tr>
+        </table>
+    </div>
+    <div id="work_container" class="container">
+        <div onclick="closework()"><i class="fas fa-angle-right"></i></div>
+        <h1>works.</h1>
+        <section>
+            <div class="gitcontainer">
+                <ul class="repo-list" id="repo-list"></ul>
+            </div>
+            <div id="used">
+                <div><i class="fas fa-circle"></i>&nbsp;Python</div>
+                <div><i class="fas fa-circle"></i>&nbsp;Flutter</div>
+                <div><i class="fas fa-circle"></i>&nbsp;Fortran</div>
+                <div><i class="fas fa-circle"></i>&nbsp;Computational Techniques</div>
+            </div>
+            <a href="http://github.com/sidhant947"><button class="btn_one">Github</button></a>
+            <a href="mailto:khatkarsidhant@gmail.com"><button class="btn_two">Mail</button></a>
+        </section>
+    </div>
+    <div id="about_container" class="container">
+        <div onclick="closeabout()"><i class="fas fa-angle-left"></i></div>
+        <h1>about.</h1>
+        <section>
+            <h2>about me</h2>
+            <p>
+                I'm a Physics Student , 24, From Jind(Haryana).
+            </p>
+
+        </section>
+        <section>
+            <h2>skills</h2>
+            <p>
+                i do eveything ;)
+            </p>
+        </section>
+    </div>
+
+    <div id="footer">
+        @Sidhant
+    </div>
+    <script>
+        function showabout() {
+            $("#about_container").css("display", "inherit");
+            $("#about_container").addClass("animated slideInLeft");
+            setTimeout(function () {
+                $("#about_container").removeClass("animated slideInLeft");
+            }, 800);
+        }
+        function closeabout() {
+            $("#about_container").addClass("animated slideOutLeft");
+            setTimeout(function () {
+                $("#about_container").removeClass("animated slideOutLeft");
+                $("#about_container").css("display", "none");
+            }, 800);
+        }
+        function showwork() {
+            $("#work_container").css("display", "inherit");
+            $("#work_container").addClass("animated slideInRight");
+            setTimeout(function () {
+                $("#work_container").removeClass("animated slideInRight");
+            }, 800);
+        }
+        function closework() {
+            $("#work_container").addClass("animated slideOutRight");
+            setTimeout(function () {
+                $("#work_container").removeClass("animated slideOutRight");
+                $("#work_container").css("display", "none");
+            }, 800);
+        }
+
+        setTimeout(function () {
+            $("#loading").addClass("animated fadeOut");
+            setTimeout(function () {
+                $("#loading").removeClass("animated fadeOut");
+                $("#loading").css("display", "none");
+                $("#box").css("display", "none");
+                $("#about").removeClass("animated fadeIn");
+                $("#work").removeClass("animated fadeIn");
+            }, 1000);
+        }, 1500);
+    </script>
+
+    <script>
+        const username = "YOUR_GITHUB_USERNAME";
+        const apiUrl = `https://api.github.com/users/sidhant947/repos?sort=latest`;
+
+        async function fetchRepos() {
+            try {
+                const response = await fetch(apiUrl);
+                if (!response.ok) {
+                    throw new Error("Failed to fetch repositories");
+                }
+
+                const repos = await response.json();
+                const repoListElement = document.getElementById("repo-list");
+
+                repos.forEach((repo) => {
+                    const repoItem = document.createElement("li");
+                    repoItem.className = "repo-item";
+
+                    const repoName = document.createElement("h3");
+                    const repoLink = document.createElement("a");
+                    repoLink.href = repo.html_url;
+                    repoLink.target = "_blank";
+                    repoLink.textContent = repo.name;
+
+                    const repoDescription = document.createElement("p");
+                    repoDescription.textContent =
+                        repo.description || "No description available";
+
+                    repoName.appendChild(repoLink);
+                    repoItem.appendChild(repoName);
+                    repoItem.appendChild(repoDescription);
+
+                    repoListElement.appendChild(repoItem);
+                });
+            } catch (error) {
+                console.error("Error fetching repositories:", error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", fetchRepos);
+    </script>
+
+
+</body>
+
+</html>
