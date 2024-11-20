@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallet</title>
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+</head>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: white;
+        background-color: black;
+    }
+
+    .video-section {
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    video {
+        width: 100%;
+        height: 100%;
+        object-fit: scale-down;
+        background: black;
+    }
+
+
+    .download-section {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .content-section {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 50px 20px;
+        margin: 50px 0;
+    }
+
+    .content-left {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .content-right {
+        flex: 1;
+        padding: 20px;
+    }
+
+    .content-left img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .content-right h2 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+
+    .content-right p {
+        font-size: 1rem;
+        color: #b6b6b6;
+    }
+
+    .footer {
+        background-color: #000;
+        color: #fff;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .footer ul li {
+        display: inline;
+        margin: 0 15px;
+    }
+
+    .footer ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 1.2rem;
+    }
+
+    .footer ul li a:hover {
+        text-decoration: underline;
+    }
+
+    .floating-btn {
+        position: fixed;
+        bottom: 10vh;
+        right: 20px;
+        height: 5vh;
+        display: flex;
+        align-items: center;
+        padding: 20px;
+        border: none;
+        outline: none;
+        color: rgb(255, 255, 255);
+        background: #111;
+        cursor: pointer;
+        z-index: 0;
+        border-radius: 10px;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+    }
+
+    .floating-btn:before {
+        content: "";
+        background: linear-gradient(45deg,
+                #ff0000,
+                #ff7300,
+                #fffb00,
+                #48ff00,
+                #00ffd5,
+                #002bff,
+                #7a00ff,
+                #ff00c8,
+                #ff0000);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        -webkit-filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing-floating-btn 20s linear infinite;
+        transition: opacity 0.3s ease-in-out;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing-floating-btn {
+        0% {
+            background-position: 0 0;
+        }
+
+        50% {
+            background-position: 400% 0;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    .floating-btn:after {
+        z-index: -1;
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #222;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
+
+    @media (max-width: 480px) {
+
+
+        .content-section {
+            flex-direction: column;
+        }
+
+
+
+    }
+</style>
+
+<body>
+
+
+    <section class="video-section">
+        <video autoplay muted loop>
+            <source
+                src="https://github-production-user-asset-6210df.s3.amazonaws.com/88372783/387116252-6d4fb13e-3901-4ed2-be53-f56d37a89358.mp4?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20241120%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20241120T151326Z&X-Amz-Expires=300&X-Amz-Signature=00fa516ecfa3082fb27566a48f83cc58dd5bc2f25d4ce42a24811901ded04cc9&X-Amz-SignedHeaders=host"
+                type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </section>
+
+    <section class="download-section">
+        <a href="https://apt.izzysoft.de/fdroid/index/apk/com.sidhant.wallet"> <img
+                src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="IzzyOnDroid"
+                width="300px"></a>
+    </section>
+
+    <section class="content-section">
+        <div class="content-left">
+            <img src="https://github.com/user-attachments/assets/bd07ecaa-484e-4aab-a189-21daf5c13386" alt="Feature 1">
+        </div>
+        <div class="content-right">
+            <h2>Minimal Design</h2>
+            <p>Kept everything minimal to colors and design , to keep it as elegant as possible</p>
+        </div>
+    </section>
+
+
+    <section class="content-section">
+        <div class="content-left">
+            <img src="https://github.com/user-attachments/assets/f247843b-e516-498c-ae91-1fc4527c9a3f" alt="Feature 2">
+        </div>
+        <div class="content-right">
+            <h2>No Internet</h2>
+            <p>Wallet Works on local database , So data never leaves your device</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="content-left">
+            <img src="https://github.com/user-attachments/assets/60ff0d68-52e0-4e9c-8bfe-292a14643e99" alt="Feature 3">
+        </div>
+        <div class="content-right">
+            <h2>Directly to Bank</h2>
+            <p>It works on UPI Address provided by banks Officially to make bill payments.</p>
+        </div>
+    </section>
+
+    <a href="https://github.com/sidhant947/Wallet/releases"><button class="floating-btn">Download Now</button></a>
+
+
+    <footer class="footer">
+        <ul>
+            <li><a href="https://x.com/vgbhuop">Developer</a></li>
+            <li><a href="https://github.com/sidhant947/Wallet">Github Repo</a></li>
+            <li><a href="mailto:khatkarsidhant@gmail.com">Contact</a></li>
+        </ul>
+    </footer>
+</body>
+
+
+</html>
