@@ -14,7 +14,7 @@
     <meta name="author" content="Sidhant">
     <meta property="og:title" content="Wallet - Digital Payment & Card Management App">
     <meta property="og:description" content="Secure offline wallet app for managing payments, cards and IDs">
-    <meta property="og:image" content="logo.png">
+    <meta property="og:image" content="screen1.png">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sidhant947.github.io/wallet/">
     <meta name="twitter:card" content="summary_large_image">
@@ -22,7 +22,7 @@
     <meta name="twitter:creator" content="@vgbhuop">
     <meta name="twitter:title" content="Wallet - Digital Payment & Card Management App">
     <meta name="twitter:description" content="Secure offline wallet app for managing payments, cards and IDs">
-    <meta name="twitter:image" content="logo.png">
+    <meta name="twitter:image" content="screen1.png">
     <meta name="theme-color" content="#000000">
 
 </head>
@@ -67,36 +67,20 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 50px 20px;
-        margin: 50px 0;
+        /* padding: 50px 20px; */
+        /* margin: 50px 0; */
     }
 
-    .content-left {
-        flex: 1;
-        padding: 20px;
-    }
 
-    .content-right {
-        flex: 1;
-        padding: 20px;
-    }
 
     .content-left img {
         max-width: 100%;
-        height: auto;
+        padding: 20px;
     }
 
 
 
-    .content-right h2 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-    }
 
-    .content-right p {
-        font-size: 1rem;
-        color: #b6b6b6;
-    }
 
     .footer {
         background-color: #000;
@@ -208,9 +192,9 @@
     @media (max-width: 480px) {
 
 
-        .content-section {
+        /* .content-section {
             flex-direction: column;
-        }
+        } */
 
         .download-section {
             flex-direction: column;
@@ -224,7 +208,11 @@
 
 <body>
 
-
+    <section class="content-section">
+        <div class="content-left">
+            <img src="screen2.png" alt="Feature">
+        </div>
+    </section>
     <section class="video-section">
         <video autoplay loop muted>
             <source src="video.mp4" type="video/mp4">
@@ -247,12 +235,7 @@
 
     <section class="content-section">
         <div class="content-left">
-            <img src="screens/1.png" alt="Feature 1">
-        </div>
-
-        <div class="content-right">
-            <h2>Minimal Design</h2>
-            <p>Kept everything minimal to colors and design , to keep it as elegant as possible</p>
+            <img src="screen1.png" alt="Feature 1">
         </div>
     </section>
 
@@ -261,19 +244,19 @@
         <div class="content-left">
             <img src="screens/2.png" alt="Feature 2">
         </div>
-        <div class="content-right">
-            <h2>No Internet</h2>
-            <p>Wallet Works on local database , So data never leaves your device</p>
-        </div>
+
     </section>
 
     <section class="content-section">
         <div class="content-left">
             <img src="screens/3.png" alt="Feature 3">
         </div>
-        <div class="content-right">
-            <h2>Directly to Bank</h2>
-            <p>It works on UPI Address provided by banks Officially to make bill payments.</p>
+
+    </section>
+
+    <section class="content-section">
+        <div class="content-left">
+            <img src="screen3.png" alt="Feature 4">
         </div>
     </section>
 
@@ -281,34 +264,20 @@
         <div class="content-left">
             <img src="screens/4.png" alt="Feature 4">
         </div>
-        <div class="content-right">
-            <h2>Smart Summary</h2>
-            <p>Track your credit card expenses with detailed table.</p>
-            <p>Get insights into your spending habits with personalized analysis.</p>
-        </div>
-
     </section>
 
     <section class="content-section">
         <div class="content-left">
             <img src="screens/5.png" alt="Feature 5">
         </div>
-        <div class="content-right">
-            <h2>Identity Cards</h2>
-            <p>Store number of your important ID cards safely.</p>
-            <p>Quick access to your documents whenever needed.</p>
-        </div>
+
     </section>
 
     <section class="content-section">
         <div class="content-left">
             <img src="screens/6.png" alt="Feature 6">
         </div>
-        <div class="content-right">
-            <h2>Loyalty Cards</h2>
-            <p>Keep all your loyalty and reward cards in one place.</p>
-            <p>Never miss out on points and rewards again.</p>
-        </div>
+
     </section>
     </div>
 
