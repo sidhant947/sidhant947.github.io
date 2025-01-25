@@ -4,545 +4,322 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sidhant</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
-    <meta name="google-site-verification" content="rWjGB2wARN10WOhqh1GgDqvks8VrceVgTekyzjui-kM" />
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa:700" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
-        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #000000;
+            color: #fff;
+            overflow-x: hidden;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            animation: heroSlideIn 1.5s ease-out;
+        }
+
+        @keyframes heroSlideIn {
+            0% {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            letter-spacing: 5px;
+            color: #00FF00;
+            margin-bottom: 15px;
+        }
+
+        .hero h1 span {
+            color: #FFD700;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #ddd;
+            margin-top: 10px;
+            font-style: italic;
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+        .social-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-buttons a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 50px;
+            background-color: #333;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-buttons a:hover {
+            background-color: #00FF00;
+            transform: scale(1.1);
+        }
+
+        .social-buttons a.github {
+            background-color: #24292f;
+        }
+
+        .social-buttons a.twitter {
+            background-color: #1DA1F2;
+        }
+
+        .social-buttons a.reddit {
+            background-color: #FF4500;
+        }
+
+        .social-buttons a.playstore {
+            background-color: #34b7f1;
+        }
+
+        @media screen and (max-width: 768px) {
+            .social-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+            }
+
+            .social-buttons a {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        #projects {
+            margin-top: 40px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+            opacity: 0;
+            animation: fadeInProjects 1s ease-in-out forwards;
+        }
+
+        @keyframes fadeInProjects {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .project-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 2px solid #00FF00;
+            border-radius: 15px;
+            overflow: hidden;
+            padding: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 6px 40px rgba(0, 0, 0, 0.6);
+        }
+
+        .project-card h3,
+        .project-card p {
+            color: #ddd;
+        }
+
+        .project-card h3 {
+            font-size: 1.6rem;
+            margin-top: 15px;
+        }
+
+        .project-card p {
+            font-size: 1rem;
+            margin-top: 10px;
+            flex-grow: 1;
+        }
+
+        .view-project-button {
+            background-color: #00FF00;
+            color: #000;
+            border: none;
+            padding: 15px;
+            font-size: 1rem;
+            border-radius: 0 0 15px 15px;
+            margin-top: 20px;
+            width: 100%;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            position: relative;
+            bottom: 0;
+        }
+
+        .view-project-button:hover {
+            background-color: #00cc00;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+
+        footer p {
+            font-size: 1.1rem;
+            color: #00FF00;
+        }
+
+        @media screen and (max-width: 768px) {
+            .projects-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2.2rem;
+            }
+
+            section h2 {
+                font-size: 2rem;
+            }
+        }
+    </style>
 </head>
 
-
-<!-- style -->
-
-
-<style>
-    @import url('https://fonts.googleapis.com/css?family=Josefin+Sans');
-
-    body {
-        padding: 0px;
-        margin: 0px;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://images.unsplash.com/photo-1662473991701-c69c3b6bf6fb?q=80&w=1793&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D") center center;
-        background-size: cover;
-        width: 100vw;
-        height: 100vh;
-        overflow: hidden;
-        font-family: 'Josefin Sans', sans-serif;
-    }
-
-    #loading {
-        width: 100vw;
-        height: 100vh;
-        position: fixed;
-        background: rgb(255, 50, 50);
-        z-index: 999;
-        display: flex;
-        justify-content: center;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    #spinner {
-        animation: rotate 0.56s infinite linear;
-        width: 50px;
-        height: 50px;
-        border: 12px solid #fff;
-        border-bottom: 12px solid rgb(255, 50, 50);
-        border-radius: 50%;
-        margin: 0;
-    }
-
-    @keyframes rotate {
-        0% {
-            transform: rotate(0deg);
-        }
-
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-
-    #box {
-        width: 100vw;
-        height: 100vh;
-        z-index: 9;
-        position: fixed;
-        top: 0;
-    }
-
-    #box div {
-        width: 16.66vw;
-        height: 100%;
-        display: inline-block;
-    }
-
-    .box1 {
-        background: rgb(255, 50, 50);
-    }
-
-    .box2 {
-        background: rgb(255, 50, 50);
-        margin-left: -5px;
-    }
-
-    #menu {
-        width: 100%;
-        text-align: center;
-        margin: 6vh 0px;
-        display: none;
-    }
-
-    #menu a {
-        margin: 0px 6%;
-        font-size: 19px;
-        color: #fff;
-        text-decoration: underline;
-    }
-
-    #middle {
-        width: 100vw;
-        height: 90vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        position: fixed;
-        top: 0;
-        text-align: center;
-        z-index: 1;
-        color: #fff;
-        padding-bottom: 10vh;
-    }
-
-    #middle h1 {
-        color: rgb(255, 50, 50);
-        font-size: 70px;
-        text-decoration: underline;
-    }
-
-    #about {
-        width: 10vw;
-        height: 10vw;
-        text-align: center;
-        font-size: 25px;
-        transform: rotate(-90deg);
-        background: transparent;
-        color: #fff;
-        position: fixed;
-        left: 0;
-        bottom: 40vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        z-index: 4;
-        transition: 0.4s ease-in-out;
-        border-radius: 0px 0px 100px 100px;
-    }
-
-    #work {
-        width: 10vw;
-        height: 10vw;
-        text-align: center;
-        font-size: 25px;
-        transform: rotate(90deg);
-        background: transparent;
-        color: #fff;
-        position: fixed;
-        right: 0;
-        bottom: 40vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        z-index: 4;
-        transition: 0.4s ease-in-out;
-        border-radius: 0px 0px 100px 100px;
-    }
-
-
-
-    #about:hover {
-        background: rgba(255, 50, 50, 0.9);
-        cursor: pointer;
-    }
-
-    #work:hover {
-        background: rgba(255, 50, 50, 0.9);
-        cursor: pointer;
-    }
-
-
-
-    #middle table {
-        width: 30%;
-        margin: 6vh auto;
-    }
-
-    #middle table tr td {
-        text-align: center;
-    }
-
-    .social {
-        color: #fff;
-        font-size: 22px;
-        border-radius: 50%;
-        transition: 0.4s ease-in-out;
-        margin: 0px 8px;
-        text-align: center;
-    }
-
-    .social:hover {
-        cursor: pointer;
-        color: rgb(255, 50, 50);
-    }
-
-    .container {
-        width: 90vw;
-        height: 90vh;
-        padding: 5vh 5vw;
-        background: rgb(255, 50, 50);
-        color: #fff;
-        z-index: 9;
-        position: fixed;
-        max-height: 100vh;
-        overflow-y: auto;
-        display: none;
-    }
-
-    .container div {
-        font-size: 25px;
-        margin: 20px 0px;
-        transition: 0.4s ease-in-out;
-    }
-
-    .container div:hover {
-        cursor: pointer;
-    }
-
-    .container section {
-        margin: 8vh 0px;
-    }
-
-    #used div {
-        font-size: 14px !important;
-        display: inline-block;
-        padding: 8px 10px;
-        border: 2px solid #fff;
-        margin: 0px 10px;
-        border-radius: 50px;
-    }
-
-    #used:hover {
-        cursor: text;
-    }
-
-    #used div:hover {
-        cursor: text;
-    }
-
-    .container h1 {
-        font-size: 60px;
-        text-decoration: underline;
-    }
-
-    .container p {
-        font-size: 21px;
-    }
-
-    .btn_one {
-        font-size: 18px;
-        font-family: 'Josefin Sans', sans-serif;
-        color: #fff;
-        background: transparent;
-        border: 3px solid #fff;
-        padding: 8px 40px;
-        border-radius: 80px;
-        font-weight: bold;
-        margin: 2vh 10px;
-        transition: 0.4s ease-in-out;
-    }
-
-    .btn_one:hover {
-        cursor: pointer;
-        color: rgb(255, 50, 50);
-        background: #fff;
-    }
-
-    .btn_two {
-        font-size: 18px;
-        font-family: 'Josefin Sans', sans-serif;
-        color: rgb(255, 50, 50);
-        background: #fff;
-        border: 3px solid #fff;
-        padding: 8px 40px;
-        border-radius: 80px;
-        font-weight: bold;
-        margin: 2vh 10px;
-        transition: 0.4s ease-in-out;
-    }
-
-    .btn_two:hover {
-        cursor: pointer;
-        padding: 8px 60px;
-    }
-
-
-
-
-
-
-    ::placeholder {
-        color: #fff;
-    }
-
-    #footer {
-        color: #fff;
-        width: 92vw;
-        padding: 5vh 4vw;
-        text-align: right;
-        position: fixed;
-        z-index: 1;
-        bottom: 0;
-        font-size: 16px;
-        font-weight: bold;
-    }
-
-    #footer a {
-        color: rgb(255, 50, 50);
-    }
-
-
-
-    ::-webkit-scrollbar {
-        width: 5px;
-        height: 5px;
-    }
-
-    ::-webkit-scrollbar-track {
-        background: #fff;
-    }
-
-    ::-webkit-scrollbar-thumb {
-        background: rgb(255, 50, 50);
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-        background: rgba(255, 50, 50, 0.8);
-    }
-
-    ::selection {
-        color: #fff;
-        background: rgb(255, 50, 50);
-    }
-
-    @media (max-width: 800px) {
-        #about {
-            display: none;
-        }
-
-        #work {
-            display: none;
-        }
-
-        #footer {
-            text-align: center;
-        }
-
-        #middle {
-            width: 90vw;
-            padding: 0px 5vw;
-        }
-
-        #middle table {
-            width: 80%;
-        }
-
-
-        #menu {
-            display: inline-block;
-        }
-
-        #onlywide {
-            display: none !important;
-        }
-
-        .box2 {
-            margin-left: 0px !important;
-        }
-
-        #box div {
-            width: 100%;
-        }
-    }
-
-
-    .repo-item h3 {
-        margin: 0 0 10px;
-        color: #2c3e50;
-    }
-
-    .repo-item a {
-        color: white;
-        text-decoration: none;
-    }
-
-    .repo-item li {
-        margin: 20px;
-    }
-</style>
-
-<!-- body -->
-
 <body>
-    <div id="loading">
-        <div id="spinner"></div>
-    </div>
-    <a id="about" onclick="showabout()" class="animated fadeIn" style="animation-delay:2.2s;">about</a>
-    <a id="work" onclick="showwork()" class="animated fadeIn" style="animation-delay:2.2s;">work</a>
-    <div id="middle" class="animated slideInDown" style="animation-delay:2.0s;">
-        <h1>Sidhant</h1>
-        <h2>Software Developer / Physicist</h2>
-        <div id="menu">
-            <a onclick="showabout()">about</a>
-            <a onclick="showwork()">work</a>
+    <div class="container">
+        <div class="hero">
+            <h1>Hi, I'm <span>Sidhant</span></h1>
+            <p>I create minimal and functional web and mobile applications with a passion for technology.</p>
+            <div class="social-buttons">
+                <a href="https://github.com/sidhant947" class="github" target="_blank"><i class="bi bi-github"></i>
+                    GitHub</a>
+                <a href="https://x.com/vgbhuop" class="twitter" target="_blank"><i class="bi bi-twitter"></i>
+                    Twitter</a>
+                <a href="https://www.reddit.com/user/sidhant947" class="reddit" target="_blank"><i
+                        class="bi bi-reddit"></i> Reddit</a>
+                <a href="https://play.google.com/store/apps/dev?id=4937028651954578103" class="playstore"
+                    target="_blank"><i class="bi bi-google"></i> Play Store</a>
+            </div>
         </div>
-        <table>
-            <tr>
 
-                <td class="animated zoomIn" style="animation-delay:2.4s;"><a href="https://x.com/vgbhuop"
-                        class="social"><i class="fab fa-twitter"></i></a></td>
-                <td class="animated zoomIn" style="animation-delay:2.6s;"><a
-                        href="https://www.reddit.com/user/Sidhant947/" class="social"><i class="fab fa-reddit"></i></a>
-                </td>
-                <td class="animated zoomIn" style="animation-delay:2.8s;"><a href="https://github.com/Sidhant947"
-                        class="social"><i class="fab fa-github"></i></a></td>
-            </tr>
-        </table>
-    </div>
-    <div id="work_container" class="container">
-        <div onclick="closework()"><i class="fas fa-angle-right"></i></div>
-        <h1>works.</h1>
-        <section>
-            <div class="gitcontainer">
-                <ul class="repo-list" id="repo-list"></ul>
+
+        <section id="projects">
+            <h2 style="text-align: center; color: #00FF00; font-size: 2.5rem; margin-bottom: 30px;">My Projects</h2>
+            <div class="projects-grid">
             </div>
-            <div id="used">
-                <div><i class="fas fa-circle"></i>&nbsp;Python</div>
-                <div><i class="fas fa-circle"></i>&nbsp;Flutter</div>
-                <div><i class="fas fa-circle"></i>&nbsp;Fortran</div>
-                <div><i class="fas fa-circle"></i>&nbsp;Computational Techniques</div>
-            </div>
-            <a href="http://github.com/sidhant947"><button class="btn_one">Github</button></a>
-            <a href="mailto:khatkarsidhant@gmail.com"><button class="btn_two">Mail</button></a>
         </section>
-    </div>
-    <div id="about_container" class="container">
-        <div onclick="closeabout()"><i class="fas fa-angle-left"></i></div>
-        <h1>about.</h1>
-        <section>
-            <h2>about me</h2>
-            <p>
-                I'm a Physics Student , 24, From Jind(Haryana).
-            </p>
 
-        </section>
-        <section>
-            <h2>skills</h2>
-            <p>
-                i do eveything ;)
-            </p>
-        </section>
+        <footer>
+            <p>&copy; 2025 Sidhant. All rights reserved.</p>
+        </footer>
     </div>
-
-    <div id="footer">
-        @Sidhant
-    </div>
-    <script>
-        function showabout() {
-            $("#about_container").css("display", "inherit");
-            $("#about_container").addClass("animated slideInLeft");
-            setTimeout(function () {
-                $("#about_container").removeClass("animated slideInLeft");
-            }, 800);
-        }
-        function closeabout() {
-            $("#about_container").addClass("animated slideOutLeft");
-            setTimeout(function () {
-                $("#about_container").removeClass("animated slideOutLeft");
-                $("#about_container").css("display", "none");
-            }, 800);
-        }
-        function showwork() {
-            $("#work_container").css("display", "inherit");
-            $("#work_container").addClass("animated slideInRight");
-            setTimeout(function () {
-                $("#work_container").removeClass("animated slideInRight");
-            }, 800);
-        }
-        function closework() {
-            $("#work_container").addClass("animated slideOutRight");
-            setTimeout(function () {
-                $("#work_container").removeClass("animated slideOutRight");
-                $("#work_container").css("display", "none");
-            }, 800);
-        }
-
-        setTimeout(function () {
-            $("#loading").addClass("animated fadeOut");
-            setTimeout(function () {
-                $("#loading").removeClass("animated fadeOut");
-                $("#loading").css("display", "none");
-                $("#box").css("display", "none");
-                $("#about").removeClass("animated fadeIn");
-                $("#work").removeClass("animated fadeIn");
-            }, 1000);
-        }, 1500);
-    </script>
 
     <script>
-        const username = "YOUR_GITHUB_USERNAME";
         const apiUrl = `https://api.github.com/users/sidhant947/repos?sort=latest`;
 
         async function fetchRepos() {
             try {
                 const response = await fetch(apiUrl);
-                if (!response.ok) {
-                    throw new Error("Failed to fetch repositories");
-                }
-
                 const repos = await response.json();
-                const repoListElement = document.getElementById("repo-list");
+
+                const projectsGrid = document.querySelector('.projects-grid');
+                projectsGrid.innerHTML = '';
 
                 repos.forEach((repo) => {
-                    const repoItem = document.createElement("li");
-                    repoItem.className = "repo-item";
+                    const projectCard = document.createElement('div');
+                    projectCard.classList.add('project-card', 'glass');
 
-                    const repoName = document.createElement("h3");
-                    const repoLink = document.createElement("a");
-                    repoLink.href = repo.html_url;
-                    repoLink.target = "_blank";
-                    repoLink.textContent = repo.name;
+                    const projectLink = document.createElement('a');
+                    projectLink.href = repo.html_url;
+                    projectLink.target = '_blank';
+                    projectLink.classList.add('project-link');
 
-                    const repoDescription = document.createElement("p");
-                    repoDescription.textContent =
-                        repo.description || "No description available";
+                    const projectTitle = document.createElement('h3');
+                    projectTitle.innerText = repo.name;
 
-                    repoName.appendChild(repoLink);
-                    repoItem.appendChild(repoName);
-                    repoItem.appendChild(repoDescription);
+                    const projectDesc = document.createElement('p');
+                    projectDesc.innerText = repo.description || 'No description available';
 
-                    repoListElement.appendChild(repoItem);
+                    const viewProjectButton = document.createElement('button');
+                    viewProjectButton.innerText = 'View Project';
+                    viewProjectButton.classList.add('view-project-button');
+
+                    projectCard.appendChild(projectTitle);
+                    projectCard.appendChild(projectDesc);
+                    projectCard.appendChild(viewProjectButton);
+
+                    projectsGrid.appendChild(projectCard);
                 });
             } catch (error) {
-                console.error("Error fetching repositories:", error);
+                console.error('Error fetching repos:', error);
             }
         }
 
-        document.addEventListener("DOMContentLoaded", fetchRepos);
+        document.addEventListener('DOMContentLoaded', fetchRepos);
     </script>
-
-
 </body>
 
 </html>
