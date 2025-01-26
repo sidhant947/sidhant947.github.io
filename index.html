@@ -40,8 +40,12 @@
             margin: 0 auto;
         }
 
-        .hero {
+        .landing {
             height: 100vh;
+        }
+
+        .hero {
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -250,20 +254,25 @@
 
 <body>
     <div class="container">
-        <div class="hero">
-            <h1>Hi, I'm <span>Sidhant</span></h1>
-            <p>I create minimal and functional web and mobile applications with a passion for technology.</p>
-            <div class="social-buttons">
-                <a href="https://github.com/sidhant947" class="github" target="_blank"><i class="bi bi-github"></i>
-                    GitHub</a>
-                <a href="https://x.com/vgbhuop" class="twitter" target="_blank"><i class="bi bi-twitter"></i>
-                    Twitter</a>
-                <a href="https://www.reddit.com/user/sidhant947" class="reddit" target="_blank"><i
-                        class="bi bi-reddit"></i> Reddit</a>
-                <a href="https://play.google.com/store/apps/dev?id=4937028651954578103" class="playstore"
-                    target="_blank"><i class="bi bi-google"></i> Play Store</a>
+        <div class="landing">
+            <div class="hero">
+                <h1>Hi, I'm <span>Sidhant</span></h1>
+                <p>I create minimal and functional web and mobile applications with a passion for technology.</p>
+                <div class="social-buttons">
+                    <a href="https://github.com/sidhant947" class="github" target="_blank"><i class="bi bi-github"></i>
+                        GitHub</a>
+                    <a href="https://x.com/vgbhuop" class="twitter" target="_blank"><i class="bi bi-twitter"></i>
+                        Twitter</a>
+                    <a href="https://www.reddit.com/user/sidhant947" class="reddit" target="_blank"><i
+                            class="bi bi-reddit"></i>
+                        Reddit</a>
+                    <a href="https://play.google.com/store/apps/dev?id=4937028651954578103" class="playstore"
+                        target="_blank"><i class="bi bi-google"></i> Play Store</a>
+                </div>
             </div>
+
         </div>
+
 
 
         <section id="projects">
@@ -307,9 +316,12 @@
                     viewProjectButton.innerText = 'View Project';
                     viewProjectButton.classList.add('view-project-button');
 
+                    // Wrap the button with the projectLink
+                    projectLink.appendChild(viewProjectButton);
+
                     projectCard.appendChild(projectTitle);
                     projectCard.appendChild(projectDesc);
-                    projectCard.appendChild(viewProjectButton);
+                    projectCard.appendChild(projectLink); // Add the link (with button inside) to the project card
 
                     projectsGrid.appendChild(projectCard);
                 });
@@ -319,6 +331,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', fetchRepos);
+
     </script>
 </body>
 
