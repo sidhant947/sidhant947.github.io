@@ -26,7 +26,6 @@
     <meta name="theme-color" content="#000000">
 
 </head>
-
 <style>
     * {
         margin: 0;
@@ -36,24 +35,9 @@
 
     body {
         font-family: Arial, sans-serif;
-        line-height: 1.6;
         color: white;
         background-color: black;
     }
-
-    .video-section {
-        width: 100%;
-        height: 100vh;
-        overflow: hidden;
-    }
-
-    video {
-        width: 100%;
-        height: 100%;
-        object-fit: scale-down;
-        background: black;
-    }
-
 
     .download-section {
         width: 100%;
@@ -67,20 +51,11 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        /* padding: 50px 20px; */
-        /* margin: 50px 0; */
     }
-
-
 
     .content-left img {
         max-width: 100%;
-        padding: 20px;
     }
-
-
-
-
 
     .footer {
         background-color: #000;
@@ -105,69 +80,7 @@
         font-size: 1.2rem;
     }
 
-    .footer ul li a:hover {
-        text-decoration: underline;
-    }
 
-    .floating-btn {
-        position: fixed;
-        bottom: 10vh;
-        right: 20px;
-        height: 5vh;
-        display: flex;
-        align-items: center;
-        padding: 20px;
-        border: none;
-        outline: none;
-        color: #000;
-        background: #fff;
-        cursor: pointer;
-        z-index: 0;
-        border-radius: 10px;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-    }
-
-    .floating-btn:before {
-        content: "";
-        background: linear-gradient(45deg,
-                #ff0000,
-                #ff7300,
-                #fffb00,
-                #48ff00,
-                #00ffd5,
-                #002bff,
-                #7a00ff,
-                #ff00c8,
-                #ff0000);
-        position: absolute;
-        top: -2px;
-        left: -2px;
-        background-size: 400%;
-        z-index: -1;
-        filter: blur(5px);
-        -webkit-filter: blur(5px);
-        width: calc(100% + 4px);
-        height: calc(100% + 4px);
-        animation: glowing-floating-btn 20s linear infinite;
-        transition: opacity 0.3s ease-in-out;
-        border-radius: 10px;
-    }
-
-    @keyframes glowing-floating-btn {
-        0% {
-            background-position: 0 0;
-        }
-
-        50% {
-            background-position: 400% 0;
-        }
-
-        100% {
-            background-position: 0 0;
-        }
-    }
 
     i {
         font-size: 2rem;
@@ -177,32 +90,11 @@
         color: cyan;
     }
 
-    .floating-btn:after {
-        z-index: -1;
-        content: "";
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        background: #fff;
-        left: 0;
-        top: 0;
-        border-radius: 10px;
-    }
-
     @media (max-width: 480px) {
-
-
-        /* .content-section {
-            flex-direction: column;
-        } */
-
         .download-section {
             flex-direction: column;
             align-items: center;
         }
-
-
-
     }
 </style>
 
@@ -213,16 +105,7 @@
             <img src="screen2.png" alt="Feature">
         </div>
     </section>
-    <section class="video-section">
-        <video autoplay loop muted>
-            <source src="video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <audio autoplay loop hidden>
-            <source src="audio.mp3" type="audio/mp3">
-            Your browser does not support the audio element.
-        </audio>
-    </section>
+
 
     <section class="download-section">
         <a href="https://apt.izzysoft.de/fdroid/index/apk/com.sidhant.wallet"> <img
@@ -240,49 +123,7 @@
     </section>
 
 
-    <section class="content-section">
-        <div class="content-left">
-            <img src="screens/2.png" alt="Feature 2">
-        </div>
 
-    </section>
-
-    <section class="content-section">
-        <div class="content-left">
-            <img src="screens/3.png" alt="Feature 3">
-        </div>
-
-    </section>
-
-    <section class="content-section">
-        <div class="content-left">
-            <img src="screen3.png" alt="Feature 4">
-        </div>
-    </section>
-
-    <section class="content-section">
-        <div class="content-left">
-            <img src="screens/4.png" alt="Feature 4">
-        </div>
-    </section>
-
-    <section class="content-section">
-        <div class="content-left">
-            <img src="screens/5.png" alt="Feature 5">
-        </div>
-
-    </section>
-
-    <section class="content-section">
-        <div class="content-left">
-            <img src="screens/6.png" alt="Feature 6">
-        </div>
-
-    </section>
-    </div>
-
-
-    <a href="https://github.com/sidhant947/Wallet/releases"><button class="floating-btn">Get on Github</button></a>
 
 
     <footer class="footer">
