@@ -26,6 +26,7 @@
     <meta name="theme-color" content="#000000">
 
 </head>
+
 <style>
     * {
         margin: 0;
@@ -34,106 +35,174 @@
     }
 
     body {
-        font-family: Arial, sans-serif;
-        color: white;
-        background-color: black;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background-color: #000000;
+        color: #ffffff;
+        line-height: 1.6;
+        min-height: 100vh;
+        overflow: hidden;
     }
 
-    .download-section {
+    .container {
         width: 100%;
-        padding: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .content-section {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .content-left img {
-        max-width: 100%;
-    }
-
-    .footer {
-        background-color: #000;
-        color: #fff;
-        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
         padding: 20px;
+        text-align: center;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        animation: fadeIn 2s ease-out;
     }
 
-    .footer ul {
-        list-style: none;
-        padding: 0;
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+
+        100% {
+            opacity: 1;
+        }
     }
 
-    .footer ul li {
-        display: inline;
-        margin: 0 15px;
+    header h1 {
+        font-size: 3rem;
+        margin-bottom: 10px;
+        color: #007AFF;
+        font-weight: 600;
+        animation: slideUp 1s ease-out;
     }
 
-    .footer ul li a {
-        color: #fff;
-        text-decoration: none;
+    header p {
         font-size: 1.2rem;
+        margin-bottom: 30px;
+        color: #999;
+        animation: slideUp 1.2s ease-out;
     }
 
+    @keyframes slideUp {
+        0% {
+            transform: translateY(20px);
+            opacity: 0;
+        }
 
-
-    i {
-        font-size: 2rem;
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
-    i:hover {
-        color: cyan;
+    .buttons {
+        margin-top: 40px;
+        animation: slideUp 1.5s ease-out;
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        margin: 10px;
+        border-radius: 12px;
+        text-decoration: none;
+        color: #fff;
+        transition: transform 0.3s ease, background-color 0.3s ease;
+        width: 200px;
+        text-align: center;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+    .download-izzy {
+        background-color: rgba(0, 122, 255, 0.8);
+    }
+
+    .download-izzy:hover {
+        background-color: rgba(0, 122, 255, 1);
+    }
+
+    .download-android {
+        background-color: rgba(52, 199, 89, 0.8);
+    }
+
+    .download-android:hover {
+        background-color: rgba(52, 199, 89, 1);
+    }
+
+    .download-instagram {
+        background-color: rgba(231, 73, 103, 0.8);
+    }
+
+    .download-instagram:hover {
+        background-color: rgba(231, 73, 103, 1);
+    }
+
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        header p {
+            font-size: 1rem;
+        }
+
+        .btn {
+            width: 180px;
+            font-size: 1rem;
+        }
+
+        .container {
+            padding: 10px;
+        }
     }
 
     @media (max-width: 480px) {
-        .download-section {
+        header h1 {
+            font-size: 2rem;
+        }
+
+        header p {
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            width: 100%;
+            font-size: 1rem;
+        }
+
+        .buttons {
+            display: flex;
             flex-direction: column;
             align-items: center;
+        }
+
+        .container {
+            padding: 20px;
         }
     }
 </style>
 
 <body>
+    <div class="container">
+        <header>
+            <h1>Welcome to Wallet App</h1>
+            <p>Your one-stop solution for managing your Cards.</p>
+        </header>
 
-    <section class="content-section">
-        <div class="content-left">
-            <img src="screen2.png" alt="Feature">
+        <div class="buttons">
+            <a href="https://apt.izzysoft.de/fdroid/index/apk/com.sidhant.wallet"
+                class="btn download-izzy">IzzyOnDroid</a>
+            <a href="https://play.google.com/store/apps/details?id=com.sidhant.wallet" class="btn download-android">Play
+                Store</a>
+
+            <a href="https://www.instagram.com/wallet.947/" class="btn download-instagram">Instagram</a>
         </div>
-    </section>
 
-
-    <section class="download-section">
-        <a href="https://apt.izzysoft.de/fdroid/index/apk/com.sidhant.wallet"> <img
-                src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="IzzyOnDroid"
-                width="300px"></a>
-        <a href="https://play.google.com/store/apps/details?id=com.sidhant.wallet"> <img
-                src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_badge_EN.svg/2560px-Google_Play_Store_badge_EN.svg.png"
-                alt="Google Play Store" width="300px"></a>
-    </section>
-
-    <section class="content-section">
-        <div class="content-left">
-            <img src="screen1.png" alt="Feature 1">
-        </div>
-    </section>
-
-
-
-
-
-    <footer class="footer">
-        <ul>
-            <li><a href="https://x.com/vgbhuop"><i class="bi bi-person-circle"></i></a></li>
-            <li><a href="https://github.com/sidhant947/Wallet"><i class="bi bi-github"></i></a></li>
-            <li><a href="mailto:khatkarsidhant@gmail.com"><i class="bi bi-envelope"></i></a></li>
-        </ul>
-    </footer>
+    </div>
 </body>
-
 
 </html>
