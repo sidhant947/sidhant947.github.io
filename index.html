@@ -4,10 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidhant</title>
-    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <title>Sidhant - Software Developer</title>
+    <!-- Placeholder for logo, with new color scheme -->
+    <link rel="shortcut icon" href="https://placehold.co/32x32/00FFFF/000000?text=S" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <style>
+        /* General styles */
+        :root {
+            --bg-dark: #000000;
+            /* Pure Black */
+            --bg-card-base: rgba(0, 0, 0, 0.05);
+            /* Very subtle transparent black for card base */
+            --primary-accent: #00FFFF;
+            /* Vibrant Cyan */
+            --secondary-accent: #FFFFFF;
+            /* Pure White */
+            --text-light: #F0F0F0;
+            /* Slightly off-white for main text */
+            --text-muted: #C0C0C0;
+            /* Lighter grey for muted text */
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -15,13 +34,50 @@
         }
 
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
-            background-color: #000000;
-            color: #fff;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
             overflow-x: hidden;
             opacity: 0;
             animation: fadeIn 1s forwards;
+            position: relative;
+            min-height: 100vh;
+            /* Ensure body takes full height for background */
+        }
+
+        /* Animated Background - Cyberpunk Glitch Effect */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                /* Cyan glow */
+                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            /* White glow */
+            z-index: -1;
+            animation: backgroundShift 30s infinite alternate ease-in-out;
+            pointer-events: none;
+            opacity: 0.7;
+            /* Keep background subtle */
+        }
+
+        @keyframes backgroundShift {
+            0% {
+                background-position: 0% 0%, 100% 100%;
+            }
+
+            50% {
+                background-position: 100% 0%, 0% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%, 100% 100%;
+            }
         }
 
         @keyframes fadeIn {
@@ -38,26 +94,75 @@
             width: 90%;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 2.5rem 1rem;
+            /* Consistent padding for all screens */
         }
 
-        .landing {
-            height: 100vh;
+        /* Crystal Glass Design */
+        .crystal-glass {
+            backdrop-filter: blur(25px) saturate(180%);
+            /* Stronger blur and saturation */
+            -webkit-backdrop-filter: blur(25px) saturate(180%);
+            background: rgba(255, 255, 255, 0.01);
+            /* Very transparent white for the glass effect */
+            border: 1px solid rgba(0, 255, 255, 0.15);
+            /* Cyan border */
+            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 255, 255, 0.05);
+            /* Stronger outer shadow, subtle inner cyan glow */
+            border-radius: 15px;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Smooth transition for everything */
         }
 
-        .hero {
-            height: 100vh;
+        /* Hero Section */
+        .hero-section {
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 20px;
-            animation: heroSlideIn 1.5s ease-out;
+            padding: 4rem 1.5rem;
         }
 
-        @keyframes heroSlideIn {
+        .hero-content {
+            animation: slideInFromTop 1.5s ease-out forwards;
+            max-width: 900px;
+            margin: auto;
+            padding: 3.5rem 2.5rem;
+            position: relative;
+        }
+
+        /* Hero Border Glow - Cyan */
+        .hero-content::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 15px;
+            padding: 2px;
+            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent), var(--primary-accent));
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            animation: borderGlow 3s infinite alternate ease-in-out;
+            z-index: -1;
+            opacity: 0.8;
+        }
+
+        @keyframes borderGlow {
             0% {
-                transform: translateY(-50px);
+                background-position: 0% 50%;
+                opacity: 0.8;
+            }
+
+            100% {
+                background-position: 100% 50%;
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInFromTop {
+            0% {
+                transform: translateY(-80px);
                 opacity: 0;
             }
 
@@ -67,186 +172,354 @@
             }
         }
 
-        .hero h1 {
-            /* font-size: 4rem; */
-            font-weight: bold;
-            /* letter-spacing: 5px; */
-            color: #00FF00;
-            margin-bottom: 15px;
+        .hero-content h1 {
+            font-size: clamp(3rem, 10vw, 5.5rem);
+            font-weight: 800;
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            animation: textFadeIn 2s ease-out forwards;
         }
 
-        .hero h1 span {
-            color: #FFD700;
+        .hero-content h1 span {
+            color: var(--primary-accent);
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
+            /* Stronger cyan glow */
         }
 
-        .hero p {
-            /* font-size: 1.5rem; */
-            color: #ddd;
-            margin-top: 10px;
-            font-style: italic;
-            max-width: 600px;
-            margin-bottom: 30px;
+        .hero-content p.tagline {
+            font-size: clamp(1.2rem, 4vw, 1.8rem);
+            color: var(--secondary-accent);
+            margin-bottom: 2rem;
+            font-weight: 500;
+            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
+            /* White glow */
+            animation: textFadeIn 2.5s ease-out forwards;
         }
 
-        .social-buttons {
+        .hero-content p.description {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 3rem auto;
+            line-height: 1.7;
+            animation: textFadeIn 3s ease-out forwards;
+        }
+
+        @keyframes textFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-links {
             display: flex;
-            gap: 15px;
-            margin-top: 30px;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            animation: socialLinksFadeIn 3.5s ease-out forwards;
         }
 
-        .social-buttons a {
-            display: inline-block;
-            text-decoration: none;
-            padding: 10px;
+        @keyframes socialLinksFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.9rem 1.8rem;
             border-radius: 50px;
-            background-color: #333;
-            color: #fff;
-            /* font-size: 1.2rem; */
-            font-weight: bold;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            background-color: #080808;
+            /* Very dark grey for solid contrast */
+            color: var(--text-light);
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Smooth transition */
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            /* Subtle cyan border */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
         }
 
-        .social-buttons a:hover {
-            background-color: #00FF00;
-            transform: scale(1.1);
+        .social-links a:hover {
+            transform: translateY(-7px) scale(1.05);
+            /* More pronounced lift and scale */
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
+            /* Cyan glow shadow */
+            border-color: var(--primary-accent);
+            background-color: #1a1a1a;
+            /* Slightly lighter on hover */
+            color: var(--primary-accent);
+            /* Cyan text on hover */
         }
 
-        .social-buttons a.github {
-            background-color: #24292f;
+        /* Specific social icon color adjustments for hover */
+        .social-links a.github:hover i {
+            color: var(--primary-accent);
         }
 
-        .social-buttons a.twitter {
-            background-color: #1DA1F2;
+        .social-links a.twitter:hover i {
+            color: var(--primary-accent);
         }
 
-        .social-buttons a.reddit {
-            background-color: #FF4500;
+        .social-links a.reddit:hover i {
+            color: var(--primary-accent);
         }
 
-        .social-buttons a.playstore {
-            background-color: #34b7f1;
+        .social-links a.playstore:hover i {
+            color: var(--primary-accent);
         }
 
-        @media screen and (max-width: 768px) {
-            .social-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
 
-            .social-buttons a {
-                width: 100%;
-                text-align: center;
-            }
+        /* Projects Section */
+        .projects-section {
+            padding: 5rem 1rem;
+            text-align: center;
         }
 
-        #projects {
-            margin-top: 40px;
+        .projects-section h2 {
+            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-weight: 700;
+            color: var(--primary-accent);
+            margin-bottom: 3.5rem;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+            /* Cyan glow */
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-            margin-top: 30px;
-            opacity: 0;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
             animation: fadeInProjects 1s ease-in-out forwards;
         }
 
         @keyframes fadeInProjects {
             0% {
                 opacity: 0;
+                transform: translateY(20px);
             }
 
             100% {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
         .project-card {
-            background: rgba(0, 0, 0, 0.2);
-            border: 2px solid #00FF00;
-            border-radius: 15px;
-            overflow: hidden;
-            padding: 20px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             display: flex;
             flex-direction: column;
             height: 100%;
+            padding: 2rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Smooth transition */
+            position: relative;
         }
 
         .project-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 6px 40px rgba(0, 0, 0, 0.6);
-        }
-
-        .project-card h3,
-        .project-card p {
-            color: #ddd;
+            transform: translateY(-15px) scale(1.03);
+            /* More aggressive lift and scale */
+            box-shadow: 0 20px 50px rgba(0, 255, 255, 0.4);
+            /* Stronger cyan glow */
+            background: rgba(255, 255, 255, 0.02);
+            /* Slightly brighter crystal on hover */
+            border-color: var(--primary-accent);
+            /* Cyan border highlight */
+            z-index: 1;
+            /* Bring hovered card to front */
         }
 
         .project-card h3 {
-            font-size: 1.6rem;
-            margin-top: 15px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-accent);
+            margin-bottom: 0.75rem;
+            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+            /* Cyan glow */
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover h3 {
+            color: var(--secondary-accent);
+            /* White title on hover */
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
         }
 
         .project-card p {
-            font-size: 1rem;
-            margin-top: 10px;
+            font-size: 1.05rem;
+            color: var(--text-muted);
             flex-grow: 1;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .project-card:hover p {
+            color: var(--text-light);
+            /* Lighter text on hover */
         }
 
         .view-project-button {
-            background-color: #00FF00;
-            color: #000;
-            border: none;
-            padding: 15px;
-            font-size: 1rem;
-            border-radius: 0 0 15px 15px;
-            margin-top: 20px;
+            display: inline-block;
             width: 100%;
+            background-color: var(--primary-accent);
+            /* Primary accent for button */
+            color: var(--bg-dark);
+            /* Pure black text on button */
+            border: none;
+            padding: 1.1rem 1.8rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 10px;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
-            position: relative;
-            bottom: 0;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.08rem;
+            /* Increased letter spacing */
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            /* Smooth transition */
+            margin-top: auto;
+            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
+            /* Subtle cyan shadow */
         }
 
         .view-project-button:hover {
-            background-color: #00cc00;
-            transform: translateY(-5px);
+            background-color: var(--secondary-accent);
+            /* White on hover */
+            color: var(--bg-dark);
+            /* Pure black text on hover */
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.5);
+            /* Stronger white shadow */
         }
 
-        footer {
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 40px 0;
+        /* Footer */
+        .footer-section {
+            padding: 3rem 1rem;
             text-align: center;
-            border-radius: 15px;
-            margin-top: 40px;
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            /* Cyan border */
+            margin-top: 5rem;
         }
 
-        footer p {
-            font-size: 1.1rem;
-            color: #00FF00;
+        .footer-section p {
+            font-size: 1rem;
+            color: var(--text-muted);
         }
 
+        /* Responsive Adjustments */
         @media screen and (max-width: 768px) {
+            .hero-section {
+                padding: 3rem 1rem;
+            }
+
+            .hero-content {
+                padding: 2.5rem 1.5rem;
+            }
+
+            .hero-content h1 {
+                font-size: clamp(2.5rem, 9vw, 4.5rem);
+            }
+
+            .hero-content p.tagline {
+                font-size: clamp(1.1rem, 3.5vw, 1.6rem);
+            }
+
+            .hero-content p.description {
+                font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+            }
+
+            .social-links a {
+                width: 80%;
+                max-width: 280px;
+                justify-content: center;
+                font-size: 1rem;
+                padding: 0.8rem 1.2rem;
+            }
+
+            .projects-section {
+                padding: 4rem 1rem;
+            }
+
+            .projects-section h2 {
+                font-size: clamp(1.8rem, 6vw, 3rem);
+            }
+
             .projects-grid {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .project-card p {
+                font-size: 0.95rem;
+            }
+
+            .view-project-button {
+                padding: 0.9rem 1.2rem;
+                font-size: 1rem;
+            }
+
+            .footer-section {
+                padding: 2rem 1rem;
             }
         }
 
         @media screen and (max-width: 480px) {
-            .projects-grid {
-                grid-template-columns: 1fr;
+            .container {
+                padding: 1.5rem 0.5rem;
             }
 
-            header h1 {
+            .hero-content h1 {
                 font-size: 2.2rem;
             }
 
-            section h2 {
+            .hero-content p.tagline {
+                font-size: 1rem;
+            }
+
+            .hero-content p.description {
+                font-size: 0.9rem;
+            }
+
+            .social-links a {
+                width: 95%;
+                font-size: 0.95rem;
+                padding: 0.7rem 1rem;
+            }
+
+            .projects-section h2 {
                 font-size: 2rem;
+            }
+
+            .project-card {
+                padding: 1.2rem;
+            }
+
+            .project-card h3 {
+                font-size: 1.3rem;
             }
         }
     </style>
@@ -254,82 +527,100 @@
 
 <body>
     <div class="container">
-        <div class="landing">
-            <div class="hero">
+        <!-- Hero Section -->
+        <section class="hero-section">
+            <div class="hero-content crystal-glass">
                 <h1>Hi, I'm <span>Sidhant</span></h1>
-                <p>I create minimal and functional web and mobile applications with a passion for technology.</p>
-                <div class="social-buttons">
-                    <a href="https://github.com/sidhant947" class="github" target="_blank"><i class="bi bi-github"></i>
-                        GitHub</a>
-                    <a href="https://x.com/vgbhuop" class="twitter" target="_blank"><i class="bi bi-twitter"></i>
-                        Twitter</a>
-                    <a href="https://www.reddit.com/user/vgbhuop" class="reddit" target="_blank"><i
-                            class="bi bi-reddit"></i>
-                        Reddit</a>
+                <p class="tagline">Crafting Minimal & Functional Digital Experiences</p>
+                <p class="description">
+                    I'm a passionate software developer specializing in creating intuitive web and mobile applications.
+                    I focus on clean code, user-centric design, and leveraging technology to solve real-world problems.
+                    Explore my projects to see my work!
+                </p>
+                <div class="social-links">
+                    <a href="https://github.com/sidhant947" class="github" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-github"></i> GitHub
+                    </a>
+                    <a href="https://x.com/vgbhuop" class="twitter" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-twitter"></i> Twitter
+                    </a>
+                    <a href="https://www.reddit.com/user/vgbhuop" class="reddit" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="bi bi-reddit"></i> Reddit
+                    </a>
+                    <!-- Placeholder for Play Store link. Removed the default from previous version -->
                 </div>
-            </div>
-
-        </div>
-
-
-
-        <section id="projects">
-            <h2 style="text-align: center; color: #00FF00; font-size: 2.5rem; margin-bottom: 30px;">My Projects</h2>
-            <div class="projects-grid">
             </div>
         </section>
 
-        <footer>
-            <p>&copy; 2025 Sidhant. All rights reserved.</p>
-        </footer>
+        <!-- Projects Section -->
+        <section class="projects-section">
+            <h2>My Projects</h2>
+            <div class="projects-grid">
+                <!-- Project cards will be injected here by JavaScript -->
+            </div>
+        </section>
     </div>
 
-    <script>
-        const apiUrl = `https://api.github.com/users/sidhant947/repos?sort=latest`;
+    <!-- Footer -->
+    <footer class="footer-section crystal-glass">
+        <p>&copy; 2025 Sidhant. All rights reserved.</p>
+    </footer>
 
-        async function fetchRepos() {
+    <script>
+        const githubApiUrl = `https://api.github.com/users/sidhant947/repos?per_page=20&sort=updated&direction=desc`;
+
+        async function fetchGithubRepos() {
             try {
-                const response = await fetch(apiUrl);
+                const response = await fetch(githubApiUrl);
+                if (!response.ok) {
+                    throw new Error(`GitHub API error: ${response.status}`);
+                }
                 const repos = await response.json();
 
                 const projectsGrid = document.querySelector('.projects-grid');
                 projectsGrid.innerHTML = '';
 
-                repos.forEach((repo) => {
-                    const projectCard = document.createElement('div');
-                    projectCard.classList.add('project-card', 'glass');
+                let filteredRepos = repos.filter(repo => !repo.fork && repo.description);
 
-                    const projectLink = document.createElement('a');
-                    projectLink.href = repo.html_url;
-                    projectLink.target = '_blank';
-                    projectLink.classList.add('project-link');
+                if (filteredRepos.length === 0) {
+                    projectsGrid.innerHTML = '<p style="text-align: center; color: var(--text-muted); font-size: 1.1rem; padding: 2rem;">No public projects with descriptions found.</p>';
+                    return;
+                }
+
+                const displayedRepos = filteredRepos.slice(0, 20);
+
+                displayedRepos.forEach((repo) => {
+                    const projectCard = document.createElement('div');
+                    projectCard.classList.add('project-card', 'crystal-glass');
 
                     const projectTitle = document.createElement('h3');
                     projectTitle.innerText = repo.name;
 
                     const projectDesc = document.createElement('p');
-                    projectDesc.innerText = repo.description || 'No description available';
+                    projectDesc.innerText = repo.description || 'No description available.';
 
-                    const viewProjectButton = document.createElement('button');
-                    viewProjectButton.innerText = 'View Project';
-                    viewProjectButton.classList.add('view-project-button');
-
-                    // Wrap the button with the projectLink
-                    projectLink.appendChild(viewProjectButton);
+                    const viewProjectLink = document.createElement('a');
+                    viewProjectLink.href = repo.html_url;
+                    viewProjectLink.target = '_blank';
+                    viewProjectLink.rel = 'noopener noreferrer';
+                    viewProjectLink.classList.add('view-project-button');
+                    viewProjectLink.innerText = 'View Project';
 
                     projectCard.appendChild(projectTitle);
                     projectCard.appendChild(projectDesc);
-                    projectCard.appendChild(projectLink); // Add the link (with button inside) to the project card
+                    projectCard.appendChild(viewProjectLink);
 
                     projectsGrid.appendChild(projectCard);
                 });
             } catch (error) {
-                console.error('Error fetching repos:', error);
+                console.error('Error fetching GitHub repos:', error);
+                const projectsGrid = document.querySelector('.projects-grid');
+                projectsGrid.innerHTML = `<p style="text-align: center; color: #ff6b6b; font-size: 1.1rem; padding: 2rem;">Failed to load projects. Please try again later. Error: ${error.message}</p>`;
             }
         }
 
-        document.addEventListener('DOMContentLoaded', fetchRepos);
-
+        document.addEventListener('DOMContentLoaded', fetchGithubRepos);
     </script>
 </body>
 
