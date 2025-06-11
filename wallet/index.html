@@ -4,12 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wallet</title>
+    <title>Wallet - Secure Digital Wallet App</title>
     <link rel="shortcut icon" href="logo.png" type="image/x-icon">
     <meta name="description"
-        content="Wallet - A secure, offline digital wallet app for managing payments, cards, and IDs">
+        content="Wallet - A secure, offline digital wallet app for managing payments, cards, and IDs with ultimate privacy and an exciting user experience.">
     <meta name="keywords"
-        content="digital wallet, UPI payments, card management, ID storage, loyalty cards, offline wallet">
+        content="digital wallet, UPI payments, card management, ID storage, loyalty cards, offline wallet, secure wallet, modern app, glassmorphism, animated background">
     <meta name="author" content="Sidhant">
     <meta property="og:title" content="Wallet - Digital Payment & Card Management App">
     <meta property="og:description" content="Secure offline wallet app for managing payments, cards and IDs">
@@ -24,184 +24,744 @@
     <meta name="twitter:image" content="screen1.png">
     <meta name="theme-color" content="#000000">
 
-</head>
+    <!-- Tailwind CSS CDN for utility classes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        background-color: #000000;
-        color: #ffffff;
-        line-height: 1.6;
-        min-height: 100vh;
-        overflow: hidden;
-    }
-
-    .container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        text-align: center;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        animation: fadeIn 2s ease-out;
-    }
-
-    @keyframes fadeIn {
-        0% {
-            opacity: 0;
+    <style>
+        :root {
+            --color-background: #0A0A10;
+            /* Very dark blue-black */
+            --color-primary-accent: #BB86FC;
+            /* Vibrant purple */
+            --color-secondary-accent: #03DAC6;
+            /* Bright teal */
+            --color-text: #FFFFFF;
+            /* Pure white */
+            --color-glass-bg: rgba(255, 255, 255, 0.08);
+            /* Light transparent background for glass effect */
+            --color-glass-border: rgba(255, 255, 255, 0.2);
+            /* Lighter border for glass effect */
         }
 
-        100% {
-            opacity: 1;
-        }
-    }
-
-    header h1 {
-        font-size: 3rem;
-        margin-bottom: 10px;
-        color: #007AFF;
-        font-weight: 600;
-        animation: slideUp 1s ease-out;
-    }
-
-    header p {
-        font-size: 1.2rem;
-        margin-bottom: 30px;
-        color: #999;
-        animation: slideUp 1.2s ease-out;
-    }
-
-    @keyframes slideUp {
-        0% {
-            transform: translateY(20px);
-            opacity: 0;
+        /* Base styles from Tailwind's equivalent classes */
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            min-height: 100vh;
         }
 
-        100% {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
-
-    .buttons {
-        margin-top: 40px;
-        animation: slideUp 1.5s ease-out;
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 15px 30px;
-        font-size: 1.2rem;
-        margin: 10px;
-        border-radius: 12px;
-        text-decoration: none;
-        color: #fff;
-        transition: transform 0.3s ease, background-color 0.3s ease;
-        width: 200px;
-        text-align: center;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-
-    .btn:hover {
-        transform: scale(1.05);
-    }
-
-    .download-izzy {
-        background-color: rgba(0, 122, 255, 0.8);
-    }
-
-    .download-izzy:hover {
-        background-color: rgba(0, 122, 255, 1);
-    }
-
-    .download-android {
-        background-color: rgba(52, 199, 89, 0.8);
-    }
-
-    .download-android:hover {
-        background-color: rgba(52, 199, 89, 1);
-    }
-
-    .download-instagram {
-        background-color: rgba(231, 73, 103, 0.8);
-    }
-
-    .download-instagram:hover {
-        background-color: rgba(231, 73, 103, 1);
-    }
-
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 2.5rem;
-        }
-
-        header p {
-            font-size: 1rem;
-        }
-
-        .btn {
-            width: 180px;
-            font-size: 1rem;
-        }
-
-        .container {
-            padding: 10px;
-        }
-    }
-
-    @media (max-width: 480px) {
-        header h1 {
-            font-size: 2rem;
-        }
-
-        header p {
-            font-size: 0.9rem;
-        }
-
-        .btn {
+        /* Animated background blobs */
+        .background-blobs {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            font-size: 1rem;
+            height: 100%;
+            overflow: hidden;
+            z-index: -2;
+            pointer-events: none;
+            /* Ensure blobs don't interfere with interaction */
         }
 
-        .buttons {
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            /* Glassy blur effect for blobs */
+            opacity: 0.4;
+            animation: moveBlob 20s infinite alternate ease-in-out;
+        }
+
+        .blob-1 {
+            width: 350px;
+            height: 350px;
+            background-color: var(--color-primary-accent);
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .blob-2 {
+            width: 450px;
+            height: 450px;
+            background-color: var(--color-secondary-accent);
+            bottom: 5%;
+            right: 15%;
+            animation-delay: 5s;
+        }
+
+        .blob-3 {
+            width: 400px;
+            height: 400px;
+            background-color: var(--color-primary-accent);
+            top: 40%;
+            right: 5%;
+            animation-delay: 10s;
+        }
+
+        @keyframes moveBlob {
+            0% {
+                transform: translate(0, 0) scale(1);
+            }
+
+            25% {
+                transform: translate(20vw, 10vh) scale(1.1);
+            }
+
+            50% {
+                transform: translate(40vw, -15vh) scale(0.9);
+            }
+
+            75% {
+                transform: translate(10vw, 25vh) scale(1.2);
+            }
+
+            100% {
+                transform: translate(0, 0) scale(1);
+            }
+        }
+
+        /* Hero section specific styles */
+        .hero-section,
+        .section-padding {
+            padding: 5rem 1rem;
+            /* Consistent padding for sections */
+        }
+
+        @media (min-width: 768px) {
+
+            .hero-section,
+            .section-padding {
+                padding: 8rem 2rem;
+            }
+        }
+
+        .hero-section {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            /* Use min-height for full viewport height */
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            /* Ensure content is above blobs */
         }
 
-        .container {
-            padding: 20px;
+        /* Headline styles with gradient and shadow */
+        .headline {
+            font-size: 3.5rem;
+            /* Increased size */
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            background-image: linear-gradient(to right, var(--color-primary-accent), var(--color-secondary-accent));
+            text-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+            /* More pronounced shadow */
         }
-    }
-</style>
 
-<body>
-    <div class="container">
-        <header>
-            <h1>Welcome to Wallet App</h1>
-            <p>Your one-stop solution for managing your Cards.</p>
-        </header>
+        @media (min-width: 768px) {
+            .headline {
+                font-size: 5.5rem;
+                /* Even larger on desktop */
+            }
+        }
 
-        <div class="buttons">
-            <a href="https://apt.izzysoft.de/fdroid/index/apk/com.sidhant.wallet"
-                class="btn download-izzy">IzzyOnDroid</a>
-            <a href="https://play.google.com/store/apps/details?id=com.sidhant.wallet" class="btn download-android">Play
-                Store</a>
+        /* Tagline styles */
+        .tagline {
+            font-size: 1.25rem;
+            margin-bottom: 2.5rem;
+            /* Increased margin */
+            color: var(--color-text);
+            max-width: 55rem;
+            /* Increased max-width */
+            line-height: 1.7;
+        }
 
-            <a href="https://www.instagram.com/wallet.947/" class="btn download-instagram">Instagram</a>
-        </div>
+        @media (min-width: 768px) {
+            .tagline {
+                font-size: 1.75rem;
+            }
+        }
 
+        /* Buttons container */
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            /* Increased gap */
+        }
+
+        @media (min-width: 640px) {
+            .buttons-container {
+                flex-direction: row;
+            }
+        }
+
+        /* Button base styles with glass effect */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.25rem 2.5rem;
+            /* Larger padding */
+            font-size: 1.25rem;
+            font-weight: 600;
+            border-radius: 9999px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease-in-out;
+            transform: translateY(0);
+            text-decoration: none;
+            color: var(--color-text);
+            /* White text */
+
+            /* Glass effect properties */
+            background-color: var(--color-glass-bg);
+            backdrop-filter: blur(15px);
+            /* Increased blur */
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--color-glass-border);
+        }
+
+        .btn:hover {
+            transform: translateY(-0.35rem);
+            /* More pronounced lift */
+            box-shadow: 0 20px 30px -5px rgba(0, 0, 0, 0.2), 0 8px 12px -6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:focus {
+            outline: none;
+            box-shadow: 0 0 0 4px var(--color-primary-accent);
+            /* Focus ring with primary accent */
+        }
+
+        /* Specific button colors (background for hover) */
+        .btn-blue {
+            /* Background set by --color-glass-bg for glass effect */
+        }
+
+        .btn-blue:hover {
+            background-color: rgba(187, 134, 252, 0.2);
+            /* Primary accent tint on hover */
+        }
+
+        .btn-green {
+            /* Background set by --color-glass-bg for glass effect */
+        }
+
+        .btn-green:hover {
+            background-color: rgba(3, 218, 198, 0.2);
+            /* Secondary accent tint on hover */
+        }
+
+        .btn-pink {
+            /* Background set by --color-glass-bg for glass effect */
+        }
+
+        .btn-pink:hover {
+            /* Sticking to 3 colors for background tints: */
+            background-color: rgba(187, 134, 252, 0.2);
+            /* Use primary accent tint */
+        }
+
+        /* Features section styles */
+        .features-section {
+            background-color: rgba(10, 10, 16, 0.6);
+            /* Slightly darker, more opaque than blobs to stand out */
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            background-image: linear-gradient(to right, var(--color-primary-accent), var(--color-secondary-accent));
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 4rem;
+            }
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            max-width: 80rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Feature card styles with glass effect */
+        .feature-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2.5rem;
+            /* Larger padding */
+            border-radius: 1.5rem;
+            /* More rounded */
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15), 0 6px 10px -3px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease-in-out;
+            transform: scale(1);
+
+            /* Glass effect properties */
+            background-color: var(--color-glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--color-glass-border);
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.25), 0 10px 15px -5px rgba(0, 0, 0, 0.15);
+            transform: scale(1.05);
+        }
+
+        .feature-icon {
+            width: 4rem;
+            /* Larger icons */
+            height: 4rem;
+            margin-bottom: 1.5rem;
+            color: var(--color-primary-accent);
+            /* Use primary accent for icons */
+        }
+
+        /* Specific color overrides for icons if needed (e.g., if different colors per icon are desired outside the 3-color rule) */
+        .feature-icon.lock {
+            color: var(--color-primary-accent);
+        }
+
+        .feature-icon.credit-card {
+            color: var(--color-secondary-accent);
+        }
+
+        .feature-icon.scan-text {
+            color: var(--color-primary-accent);
+        }
+
+        /* or secondary if preferred */
+
+
+        .feature-title {
+            font-size: 1.75rem;
+            /* Larger title */
+            font-weight: 700;
+            /* Bolder */
+            margin-bottom: 0.75rem;
+            color: var(--color-text);
+        }
+
+        .feature-description {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            /* Slightly softer white */
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Visual Showcase section styles */
+        .visual-showcase-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 70rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .visual-showcase-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .visual-showcase-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .screenshot-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15), 0 6px 10px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+            background-color: var(--color-glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--color-glass-border);
+        }
+
+        .screenshot-card:hover {
+            transform: translateY(-0.5rem) scale(1.02);
+            box-shadow: 0 25px 45px -10px rgba(0, 0, 0, 0.25), 0 10px 15px -5px rgba(0, 0, 0, 0.15);
+        }
+
+        .screenshot-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-bottom: 1px solid var(--color-glass-border);
+        }
+
+        .screenshot-card-content {
+            padding: 1.5rem;
+            text-align: left;
+        }
+
+        .screenshot-card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--color-primary-accent);
+        }
+
+        .screenshot-card-description {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Testimonials section styles */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            max-width: 60rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .testimonial-card {
+            padding: 2.5rem;
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.15), 0 6px 10px -3px rgba(0, 0, 0, 0.1);
+            background-color: var(--color-glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--color-glass-border);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-quote {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--color-primary-accent);
+            margin-top: 1rem;
+        }
+
+        .testimonial-source {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 3rem;
+            color: rgba(187, 134, 252, 0.3);
+            /* Primary accent with low opacity */
+            z-index: 0;
+        }
+
+        /* Call to Action section */
+        .cta-section {
+            text-align: center;
+            background-color: rgba(10, 10, 16, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-top: 5rem;
+            /* Add margin to separate from previous section */
+        }
+
+        .cta-section .buttons-container {
+            margin-top: 3rem;
+            /* Space between title and buttons */
+            justify-content: center;
+            /* Center buttons */
+        }
+
+
+        /* Footer styles */
+        .footer {
+            padding: 2rem;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+        }
+
+        /* Keyframe animations */
+        @keyframes fadeInMoveUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-load {
+            opacity: 0;
+            /* Hidden by default until JS applies animation */
+        }
+    </style>
+</head>
+
+<body class="text-white min-h-screen">
+
+    <!-- Animated Background Blobs Container -->
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <h1 class="headline animate-on-load" style="animation-delay: 0s;">
+            Wallet
+        </h1>
+        <p class="tagline animate-on-load" style="animation-delay: 0.2s;">
+            Seamlessly manage your digital payments, cards, and IDs with ultimate privacy and unparalleled ease.
+        </p>
+        <div class="buttons-container animate-on-load" style="animation-delay: 0.4s;">
+            <!-- IzzyOnDroid Download Button -->
+            <a href="https://apt.izzysoft.de/fdroid/index/apk/com.sidhant.wallet" class="btn btn-blue" target="_blank"
+                rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-zap inline-block w-6 h-6 mr-3">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+                Get on IzzyOnDroid
+            </a>
+
+            <!-- Play Store Download Button -->
+            <a href="https://play.google.com/store/apps/details?id=com.sidhant.wallet" class="btn btn-green"
+                target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-gamepad inline-block w-6 h-6 mr-3">
+                    <path d="M6 12H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2Z" />
+                    <path d="M18 12h2a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2Z" />
+                    <path d="M12 6V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2Z" />
+                    <path d="M12 18v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2Z" />
+                    <path d="M2 12h20" />
+                    <path d="M12 2v20" />
+                </svg>
+                Download on Play Store
+            </a>
+
+            <!-- Instagram Link Button -->
+            <a href="https://www.instagram.com/wallet.947/" class="btn btn-pink" target="_blank"
+                rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-instagram inline-block w-6 h-6 mr-3">
+                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                    <line x1="17.5" x2="17.5" y1="6.5" y2="6.5" />
+                </svg>
+                Follow on Instagram
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section section-padding">
+        <h2 class="section-title">
+            Why Choose Wallet?
+        </h2>
+
+        <div class="features-grid">
+            <!-- Feature Card 1: Unparalleled Security -->
+            <div class="feature-card animate-on-load" style="animation-delay: 0.6s;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-lock feature-icon lock">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <h3 class="feature-title">Unparalleled Security</h3>
+                <p class="feature-description">Your sensitive data is encrypted and stored offline, ensuring maximum
+                    privacy and robust protection from online threats.</p>
+            </div>
+
+            <!-- Feature Card 2: Effortless Card Management -->
+            <div class="feature-card animate-on-load" style="animation-delay: 0.8s;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-credit-card feature-icon credit-card">
+                    <rect width="20" height="14" x="2" y="5" rx="2" />
+                    <line x1="2" x2="22" y1="10" y2="10" />
+                </svg>
+                <h3 class="feature-title">Effortless Card Management</h3>
+                <p class="feature-description">Organize all your credit, debit, and loyalty cards in one secure,
+                    intuitive, and readily accessible digital space.</p>
+            </div>
+
+            <!-- Feature Card 3: Digital ID Storage -->
+            <div class="feature-card animate-on-load" style="animation-delay: 1.0s;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-scan-text feature-icon scan-text">
+                    <path d="M3 7V5a2 2 0 0 1 2-2h2" />
+                    <path d="M17 3h2a2 2 0 0 1 2 2v2" />
+                    <path d="M21 17v2a2 2 0 0 1-2 2h-2" />
+                    <path d="M7 21H5a2 2 0 0 1-2-2v-2" />
+                    <path d="M7 12h10" />
+                    <path d="M7 18h7" />
+                    <path d="M10 6h4" />
+                </svg>
+                <h3 class="feature-title">Digital ID Storage</h3>
+                <p class="feature-description">Safely store important identification documents and personal records,
+                    always at your fingertips when you need them.</p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section section-padding">
+        <h2 class="section-title">
+            What Our Users Say
+        </h2>
+        <div class="testimonials-grid">
+            <div class="testimonial-card animate-on-load" style="animation-delay: 2.0s;">
+                <span class="quote-icon">"</span>
+                <p class="testimonial-quote">"Wallet has transformed how I manage my cards. It's incredibly secure and
+                    so easy to use. A must-have app for digital organization!"</p>
+                <p class="testimonial-author">- Aisha S.</p>
+                <p class="testimonial-source">Verified User</p>
+            </div>
+            <div class="testimonial-card animate-on-load" style="animation-delay: 2.2s;">
+                <span class="quote-icon">"</span>
+                <p class="testimonial-quote">"The offline access is a game-changer. I never have to worry about
+                    forgetting my wallet again. Plus, the design is sleek and modern!"</p>
+                <p class="testimonial-author">- Rahul K.</p>
+                <p class="testimonial-source">Play Store Review</p>
+            </div>
+            <div class="testimonial-card animate-on-load" style="animation-delay: 2.4s;">
+                <span class="quote-icon">"</span>
+                <p class="testimonial-quote">"Privacy was my top concern, and Wallet delivers. Knowing my data is secure
+                    and offline gives me peace of mind. Highly recommend!"</p>
+                <p class="testimonial-author">- David C.</p>
+                <p class="testimonial-source">IzzyOnDroid User</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Call to Action Section -->
+    <section class="cta-section section-padding">
+        <h2 class="section-title">
+            Ready to Simplify Your Life?
+        </h2>
+        <p class="tagline max-w-2xl mx-auto mb-10">Join thousands of users who trust Wallet for secure and seamless
+            digital management. Download now and experience the future of your personal finances.</p>
+        <div class="buttons-container mx-auto">
+            <!-- Re-using the same download buttons from the hero section -->
+            <a href="https://apt.izzysoft.de/fdroid/index/apk/com.sidhant.wallet" class="btn btn-blue" target="_blank"
+                rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-zap inline-block w-6 h-6 mr-3">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                </svg>
+                Get on IzzyOnDroid
+            </a>
+            <a href="https://play.google.com/store/apps/details?id=com.sidhant.wallet" class="btn btn-green"
+                target="_blank" rel="noopener noreferrer">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="lucide lucide-gamepad inline-block w-6 h-6 mr-3">
+                    <path d="M6 12H4a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2a2 2 0 0 1-2 2Z" />
+                    <path d="M18 12h2a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2Z" />
+                    <path d="M12 6V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2Z" />
+                    <path d="M12 18v2a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2Z" />
+                    <path d="M2 12h20" />
+                    <path d="M12 2v20" />
+                </svg>
+                Download on Play Store
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p class="footer-text">&copy; 2025 Wallet App. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animate-on-load');
+            animatedElements.forEach(el => {
+                // Read the animation-delay from the inline style
+                const delay = parseFloat(el.style.animationDelay) || 0;
+                // Apply the animation class after a short timeout
+                setTimeout(() => {
+                    el.style.animation = `fadeInMoveUp 0.8s ease-out forwards`;
+                }, delay * 1000); // Convert seconds to milliseconds
+            });
+            // Replace lucide icons
+            lucide.createIcons();
+        });
+    </script>
 </body>
 
 </html>
