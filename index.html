@@ -5,26 +5,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sidhant - Software Developer</title>
-    <!-- Placeholder for logo, with new color scheme -->
     <link rel="shortcut icon" href="https://placehold.co/32x32/00FFFF/000000?text=S" type="image/x-icon">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* General styles */
+        /* Cyberpunk Color Palette */
         :root {
-            --bg-dark: #000000;
-            /* Pure Black */
-            --bg-card-base: rgba(0, 0, 0, 0.05);
-            /* Very subtle transparent black for card base */
-            --primary-accent: #00FFFF;
-            /* Vibrant Cyan */
-            --secondary-accent: #FFFFFF;
-            /* Pure White */
-            --text-light: #F0F0F0;
-            /* Slightly off-white for main text */
-            --text-muted: #C0C0C0;
-            /* Lighter grey for muted text */
+            --bg-dark: #0a0a0f;
+            --bg-darker: #050508;
+            --neon-cyan: #00ffff;
+            --neon-pink: #ff0080;
+            --neon-purple: #8000ff;
+            --neon-green: #00ff41;
+            --neon-orange: #ff4500;
+            --electric-blue: #0080ff;
+            --text-primary: #ffffff;
+            --text-secondary: #b0b0b0;
+            --text-muted: #808080;
+            --glass-bg: rgba(0, 255, 255, 0.05);
+            --glass-border: rgba(0, 255, 255, 0.2);
+            --shadow-neon: 0 0 20px rgba(0, 255, 255, 0.5);
+            --shadow-pink: 0 0 20px rgba(255, 0, 128, 0.5);
+            --shadow-purple: 0 0 20px rgba(128, 0, 255, 0.5);
         }
 
         * {
@@ -34,19 +36,16 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Rajdhani', sans-serif;
             line-height: 1.6;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
+            background: var(--bg-dark);
+            color: var(--text-primary);
             overflow-x: hidden;
-            opacity: 0;
-            animation: fadeIn 1s forwards;
             position: relative;
             min-height: 100vh;
-            /* Ensure body takes full height for background */
         }
 
-        /* Animated Background - Cyberpunk Glitch Effect */
+        /* Cyberpunk Grid Background */
         body::before {
             content: '';
             position: fixed;
@@ -54,39 +53,91 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background:
-                radial-gradient(circle at 10% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-                /* Cyan glow */
-                radial-gradient(circle at 90% 80%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
-            /* White glow */
-            z-index: -1;
-            animation: backgroundShift 30s infinite alternate ease-in-out;
-            pointer-events: none;
-            opacity: 0.7;
-            /* Keep background subtle */
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -3;
+            animation: gridPulse 4s ease-in-out infinite alternate;
         }
 
-        @keyframes backgroundShift {
-            0% {
-                background-position: 0% 0%, 100% 100%;
-            }
+        /* Animated Cyberpunk Background */
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 128, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(128, 0, 255, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 90% 20%, rgba(0, 255, 65, 0.05) 0%, transparent 50%);
+            z-index: -2;
+            animation: cyberpunkShift 20s infinite ease-in-out;
+        }
 
-            50% {
-                background-position: 100% 0%, 0% 100%;
-            }
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
 
-            100% {
-                background-position: 0% 0%, 100% 100%;
+        @keyframes cyberpunkShift {
+            0%, 100% { 
+                background-position: 0% 0%, 100% 100%, 50% 50%, 80% 20%;
+                filter: hue-rotate(0deg);
+            }
+            25% { 
+                background-position: 100% 0%, 0% 100%, 80% 20%, 20% 80%;
+                filter: hue-rotate(90deg);
+            }
+            50% { 
+                background-position: 100% 100%, 0% 0%, 20% 80%, 80% 20%;
+                filter: hue-rotate(180deg);
+            }
+            75% { 
+                background-position: 0% 100%, 100% 0%, 80% 20%, 20% 80%;
+                filter: hue-rotate(270deg);
             }
         }
 
-        @keyframes fadeIn {
+        /* Glitch Effect Keyframes */
+        @keyframes glitch {
+            0%, 100% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor; }
+            50% { text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 30px currentColor; }
+        }
+
+        @keyframes borderScan {
+            0% { border-color: var(--neon-cyan); box-shadow: var(--shadow-neon); }
+            25% { border-color: var(--neon-pink); box-shadow: var(--shadow-pink); }
+            50% { border-color: var(--neon-purple); box-shadow: var(--shadow-purple); }
+            75% { border-color: var(--neon-green); box-shadow: 0 0 20px rgba(0, 255, 65, 0.5); }
+            100% { border-color: var(--neon-cyan); box-shadow: var(--shadow-neon); }
+        }
+
+        @keyframes hologramFlicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+            75% { opacity: 0.9; }
+        }
+
+        @keyframes slideInCyber {
             0% {
                 opacity: 0;
+                transform: translateY(50px) rotateX(20deg);
             }
-
             100% {
                 opacity: 1;
+                transform: translateY(0) rotateX(0deg);
             }
         }
 
@@ -95,23 +146,43 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 2.5rem 1rem;
-            /* Consistent padding for all screens */
         }
 
-        /* Crystal Glass Design */
-        .crystal-glass {
-            backdrop-filter: blur(25px) saturate(180%);
-            /* Stronger blur and saturation */
-            -webkit-backdrop-filter: blur(25px) saturate(180%);
-            background: rgba(255, 255, 255, 0.01);
-            /* Very transparent white for the glass effect */
-            border: 1px solid rgba(0, 255, 255, 0.15);
-            /* Cyan border */
-            box-shadow: 0 4px 60px rgba(0, 0, 0, 0.7), inset 0 0 20px rgba(0, 255, 255, 0.05);
-            /* Stronger outer shadow, subtle inner cyan glow */
+        /* Cyberpunk Glass Design */
+        .cyber-glass {
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            background: var(--glass-bg);
+            border: 2px solid var(--glass-border);
             border-radius: 15px;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            /* Smooth transition for everything */
+            position: relative;
+            transition: all 0.3s ease;
+            animation: hologramFlicker 3s infinite ease-in-out;
+        }
+
+        .cyber-glass::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 13px;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .cyber-glass:hover::before {
+            opacity: 1;
+        }
+
+        .cyber-glass:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: var(--shadow-neon);
+            transform: translateY(-5px);
+            animation: borderScan 2s infinite;
         }
 
         /* Hero Section */
@@ -122,326 +193,358 @@
             justify-content: center;
             text-align: center;
             padding: 4rem 1.5rem;
+            position: relative;
         }
 
         .hero-content {
-            animation: slideInFromTop 1.5s ease-out forwards;
             max-width: 900px;
             margin: auto;
             padding: 3.5rem 2.5rem;
             position: relative;
-        }
-
-        /* Hero Border Glow - Cyan */
-        .hero-content::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 15px;
-            padding: 2px;
-            background: linear-gradient(45deg, var(--primary-accent), var(--secondary-accent), var(--primary-accent));
-            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            animation: borderGlow 3s infinite alternate ease-in-out;
-            z-index: -1;
-            opacity: 0.8;
-        }
-
-        @keyframes borderGlow {
-            0% {
-                background-position: 0% 50%;
-                opacity: 0.8;
-            }
-
-            100% {
-                background-position: 100% 50%;
-                opacity: 1;
-            }
-        }
-
-        @keyframes slideInFromTop {
-            0% {
-                transform: translateY(-80px);
-                opacity: 0;
-            }
-
-            100% {
-                transform: translateY(0);
-                opacity: 1;
-            }
+            animation: slideInCyber 1.5s ease-out forwards;
         }
 
         .hero-content h1 {
-            font-size: clamp(3rem, 10vw, 5.5rem);
-            font-weight: 800;
-            color: var(--text-light);
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            color: var(--text-primary);
             margin-bottom: 0.5rem;
-            animation: textFadeIn 2s ease-out forwards;
+            position: relative;
+            animation: textGlow 2s infinite ease-in-out;
         }
 
         .hero-content h1 span {
-            color: var(--primary-accent);
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.8);
-            /* Stronger cyan glow */
+            color: var(--neon-cyan);
+            text-shadow: 
+                0 0 5px var(--neon-cyan),
+                0 0 10px var(--neon-cyan),
+                0 0 20px var(--neon-cyan),
+                0 0 40px var(--neon-cyan);
+            animation: glitch 0.3s infinite;
+        }
+
+        .hero-content h1:hover span {
+            animation: glitch 0.1s infinite;
         }
 
         .hero-content p.tagline {
-            font-size: clamp(1.2rem, 4vw, 1.8rem);
-            color: var(--secondary-accent);
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            color: var(--neon-pink);
             margin-bottom: 2rem;
-            font-weight: 500;
-            text-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
-            /* White glow */
-            animation: textFadeIn 2.5s ease-out forwards;
+            font-weight: 600;
+            text-shadow: 
+                0 0 5px var(--neon-pink),
+                0 0 10px var(--neon-pink);
+            animation: textGlow 3s infinite ease-in-out;
         }
 
         .hero-content p.description {
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            color: var(--text-muted);
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            color: var(--text-secondary);
             max-width: 700px;
             margin: 0 auto 3rem auto;
-            line-height: 1.7;
-            animation: textFadeIn 3s ease-out forwards;
+            line-height: 1.8;
+            text-shadow: 0 0 5px rgba(176, 176, 176, 0.5);
         }
 
-        @keyframes textFadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
+        /* Social Links */
         .social-links {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 1.5rem;
             margin-top: 2rem;
-            animation: socialLinksFadeIn 3.5s ease-out forwards;
-        }
-
-        @keyframes socialLinksFadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
         }
 
         .social-links a {
             display: inline-flex;
             align-items: center;
             gap: 0.75rem;
-            padding: 0.9rem 1.8rem;
+            padding: 1rem 2rem;
             border-radius: 50px;
-            background-color: #080808;
-            /* Very dark grey for solid contrast */
-            color: var(--text-light);
+            background: linear-gradient(45deg, var(--bg-darker), var(--bg-dark));
+            color: var(--text-primary);
             text-decoration: none;
             font-size: 1.1rem;
             font-weight: 600;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            /* Smooth transition */
-            border: 1px solid rgba(0, 255, 255, 0.2);
-            /* Subtle cyan border */
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+            border: 2px solid var(--neon-cyan);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .social-links a:hover::before {
+            left: 100%;
         }
 
         .social-links a:hover {
-            transform: translateY(-7px) scale(1.05);
-            /* More pronounced lift and scale */
-            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.4);
-            /* Cyan glow shadow */
-            border-color: var(--primary-accent);
-            background-color: #1a1a1a;
-            /* Slightly lighter on hover */
-            color: var(--primary-accent);
-            /* Cyan text on hover */
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 
+                0 10px 30px rgba(0, 255, 255, 0.3),
+                0 0 20px var(--neon-cyan);
+            border-color: var(--neon-pink);
+            color: var(--neon-cyan);
+            animation: borderScan 1s infinite;
         }
 
-        /* Specific social icon color adjustments for hover */
-        .social-links a.github:hover i {
-            color: var(--primary-accent);
+        .social-links a.github:hover {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
         }
 
-        .social-links a.twitter:hover i {
-            color: var(--primary-accent);
+        .social-links a.twitter:hover {
+            border-color: var(--electric-blue);
+            color: var(--electric-blue);
         }
 
-        .social-links a.reddit:hover i {
-            color: var(--primary-accent);
+        .social-links a.reddit:hover {
+            border-color: var(--neon-orange);
+            color: var(--neon-orange);
         }
-
-        .social-links a.playstore:hover i {
-            color: var(--primary-accent);
-        }
-
 
         /* Projects Section */
         .projects-section {
             padding: 5rem 1rem;
             text-align: center;
+            position: relative;
+        }
+
+        .projects-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-pink), var(--neon-purple), transparent);
+            animation: borderScan 3s infinite;
         }
 
         .projects-section h2 {
-            font-size: clamp(2.2rem, 6vw, 3.5rem);
+            font-family: 'Orbitron', monospace;
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-weight: 700;
-            color: var(--primary-accent);
+            color: var(--neon-cyan);
             margin-bottom: 3.5rem;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-            /* Cyan glow */
+            text-shadow: 
+                0 0 10px var(--neon-cyan),
+                0 0 20px var(--neon-cyan),
+                0 0 30px var(--neon-cyan);
+            animation: textGlow 2s infinite ease-in-out;
+            position: relative;
+        }
+
+        .projects-section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-cyan), var(--neon-purple));
+            border-radius: 2px;
+            animation: borderScan 2s infinite;
         }
 
         .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
-            animation: fadeInProjects 1s ease-in-out forwards;
-        }
-
-        @keyframes fadeInProjects {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            animation: slideInCyber 1s ease-in-out forwards;
         }
 
         .project-card {
             display: flex;
             flex-direction: column;
             height: 100%;
-            padding: 2rem;
-            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            /* Smooth transition */
+            padding: 2.5rem;
             position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            border: 2px solid var(--glass-border);
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 15px;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            left: 100%;
         }
 
         .project-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            /* More aggressive lift and scale */
-            box-shadow: 0 20px 50px rgba(0, 255, 255, 0.4);
-            /* Stronger cyan glow */
-            background: rgba(255, 255, 255, 0.02);
-            /* Slightly brighter crystal on hover */
-            border-color: var(--primary-accent);
-            /* Cyan border highlight */
-            z-index: 1;
-            /* Bring hovered card to front */
+            transform: translateY(-15px) rotateX(5deg);
+            border-color: var(--neon-cyan);
+            box-shadow: 
+                0 20px 50px rgba(0, 0, 0, 0.5),
+                0 0 30px var(--neon-cyan),
+                inset 0 0 20px rgba(0, 255, 255, 0.1);
+            animation: borderScan 2s infinite;
         }
 
         .project-card h3 {
+            font-family: 'Orbitron', monospace;
             font-size: 1.8rem;
             font-weight: 700;
-            color: var(--primary-accent);
-            margin-bottom: 0.75rem;
-            text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-            /* Cyan glow */
-            transition: color 0.3s ease;
+            color: var(--neon-cyan);
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s ease;
         }
 
         .project-card:hover h3 {
-            color: var(--secondary-accent);
-            /* White title on hover */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+            color: var(--neon-pink);
+            text-shadow: 0 0 15px var(--neon-pink);
+            animation: glitch 0.3s infinite;
         }
 
         .project-card p {
-            font-size: 1.05rem;
-            color: var(--text-muted);
+            font-size: 1.1rem;
+            color: var(--text-secondary);
             flex-grow: 1;
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 2;
             transition: color 0.3s ease;
         }
 
         .project-card:hover p {
-            color: var(--text-light);
-            /* Lighter text on hover */
+            color: var(--text-primary);
         }
 
         .view-project-button {
             display: inline-block;
             width: 100%;
-            background-color: var(--primary-accent);
-            /* Primary accent for button */
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
             color: var(--bg-dark);
-            /* Pure black text on button */
             border: none;
-            padding: 1.1rem 1.8rem;
+            padding: 1.2rem 2rem;
             font-size: 1.1rem;
             font-weight: 700;
-            border-radius: 10px;
+            border-radius: 50px;
             cursor: pointer;
             text-decoration: none;
             text-transform: uppercase;
-            letter-spacing: 0.08rem;
-            /* Increased letter spacing */
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            /* Smooth transition */
-            margin-top: auto;
-            box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3);
-            /* Subtle cyan shadow */
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 2;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .view-project-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-green));
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .view-project-button:hover::before {
+            left: 0;
         }
 
         .view-project-button:hover {
-            background-color: var(--secondary-accent);
-            /* White on hover */
-            color: var(--bg-dark);
-            /* Pure black text on hover */
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.5);
-            /* Stronger white shadow */
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 
+                0 10px 25px rgba(0, 255, 255, 0.4),
+                0 0 20px var(--neon-cyan);
+            animation: glitch 0.2s infinite;
         }
 
         /* Footer */
         .footer-section {
             padding: 3rem 1rem;
             text-align: center;
-            border-top: 1px solid rgba(0, 255, 255, 0.1);
-            /* Cyan border */
+            border-top: 2px solid var(--glass-border);
             margin-top: 5rem;
+            position: relative;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+        }
+
+        .footer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink), var(--neon-purple), var(--neon-green), var(--neon-cyan));
+            animation: borderScan 4s infinite;
         }
 
         .footer-section p {
-            font-size: 1rem;
-            color: var(--text-muted);
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-shadow: 0 0 5px rgba(176, 176, 176, 0.3);
         }
 
-        /* Responsive Adjustments */
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-text {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--neon-cyan);
+            text-shadow: 0 0 20px var(--neon-cyan);
+            animation: textGlow 1s infinite ease-in-out;
+        }
+
+        /* Responsive Design */
         @media screen and (max-width: 768px) {
             .hero-section {
                 padding: 3rem 1rem;
             }
 
             .hero-content {
-                padding: 2.5rem 1.5rem;
-            }
-
-            .hero-content h1 {
-                font-size: clamp(2.5rem, 9vw, 4.5rem);
-            }
-
-            .hero-content p.tagline {
-                font-size: clamp(1.1rem, 3.5vw, 1.6rem);
-            }
-
-            .hero-content p.description {
-                font-size: clamp(0.95rem, 2.8vw, 1.1rem);
+                padding: 2rem 1.5rem;
             }
 
             .social-links a {
@@ -449,41 +552,20 @@
                 max-width: 280px;
                 justify-content: center;
                 font-size: 1rem;
-                padding: 0.8rem 1.2rem;
+                padding: 1rem 1.5rem;
             }
 
             .projects-section {
                 padding: 4rem 1rem;
             }
 
-            .projects-section h2 {
-                font-size: clamp(1.8rem, 6vw, 3rem);
-            }
-
             .projects-grid {
                 grid-template-columns: 1fr;
-                gap: 1.8rem;
+                gap: 2rem;
             }
 
             .project-card {
-                padding: 1.5rem;
-            }
-
-            .project-card h3 {
-                font-size: 1.5rem;
-            }
-
-            .project-card p {
-                font-size: 0.95rem;
-            }
-
-            .view-project-button {
-                padding: 0.9rem 1.2rem;
-                font-size: 1rem;
-            }
-
-            .footer-section {
-                padding: 2rem 1rem;
+                padding: 2rem;
             }
         }
 
@@ -493,43 +575,62 @@
             }
 
             .hero-content h1 {
-                font-size: 2.2rem;
-            }
-
-            .hero-content p.tagline {
-                font-size: 1rem;
-            }
-
-            .hero-content p.description {
-                font-size: 0.9rem;
+                font-size: 2.5rem;
             }
 
             .social-links a {
                 width: 95%;
                 font-size: 0.95rem;
-                padding: 0.7rem 1rem;
-            }
-
-            .projects-section h2 {
-                font-size: 2rem;
+                padding: 0.8rem 1.2rem;
             }
 
             .project-card {
-                padding: 1.2rem;
+                padding: 1.5rem;
             }
+        }
 
-            .project-card h3 {
-                font-size: 1.3rem;
-            }
+        /* Scroll Animations */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Cyberpunk Cursor Trail */
+        .cursor-trail {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            box-shadow: 0 0 10px var(--neon-cyan);
+            animation: cursorFade 0.5s ease-out forwards;
+        }
+
+        @keyframes cursorFade {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(0); }
         }
     </style>
 </head>
 
 <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-text">INITIALIZING...</div>
+    </div>
+
     <div class="container">
         <!-- Hero Section -->
         <section class="hero-section">
-            <div class="hero-content crystal-glass">
+            <div class="hero-content cyber-glass fade-in-up">
                 <h1>Hi, I'm <span>Sidhant</span></h1>
                 <p class="tagline">Crafting Minimal & Functional Digital Experiences</p>
                 <p class="description">
@@ -548,13 +649,12 @@
                         rel="noopener noreferrer">
                         <i class="bi bi-reddit"></i> Reddit
                     </a>
-                    <!-- Placeholder for Play Store link. Removed the default from previous version -->
                 </div>
             </div>
         </section>
 
         <!-- Projects Section -->
-        <section class="projects-section">
+        <section class="projects-section fade-in-up">
             <h2>My Projects</h2>
             <div class="projects-grid">
                 <!-- Project cards will be injected here by JavaScript -->
@@ -563,11 +663,57 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer-section crystal-glass">
-        <p>&copy; 2025 Sidhant. All rights reserved.</p>
+    <footer class="footer-section cyber-glass fade-in-up">
+        <p>&copy; 2025 Sidhant. All rights reserved. | Powered by Cyberpunk Aesthetics</p>
     </footer>
 
     <script>
+        // Loading screen
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loadingOverlay').style.display = 'none';
+                }, 500);
+            }, 1500);
+        });
+
+        // Cyberpunk cursor trail effect
+        let mouseX = 0, mouseY = 0;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = mouseX + 'px';
+            trail.style.top = mouseY + 'px';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                trail.remove();
+            }, 500);
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // GitHub API integration
         const githubApiUrl = `https://api.github.com/users/sidhant947/repos?per_page=20&sort=updated&direction=desc`;
 
         async function fetchGithubRepos() {
@@ -590,9 +736,10 @@
 
                 const displayedRepos = filteredRepos.slice(0, 20);
 
-                displayedRepos.forEach((repo) => {
+                displayedRepos.forEach((repo, index) => {
                     const projectCard = document.createElement('div');
-                    projectCard.classList.add('project-card', 'crystal-glass');
+                    projectCard.classList.add('project-card', 'cyber-glass', 'fade-in-up');
+                    projectCard.style.animationDelay = `${index * 0.1}s`;
 
                     const projectTitle = document.createElement('h3');
                     projectTitle.innerText = repo.name;
@@ -605,20 +752,51 @@
                     viewProjectLink.target = '_blank';
                     viewProjectLink.rel = 'noopener noreferrer';
                     viewProjectLink.classList.add('view-project-button');
-                    viewProjectLink.innerText = 'View Project';
+                    viewProjectLink.innerText = 'Access Project';
 
                     projectCard.appendChild(projectTitle);
                     projectCard.appendChild(projectDesc);
                     projectCard.appendChild(viewProjectLink);
 
                     projectsGrid.appendChild(projectCard);
+                    
+                    // Observe the new card for scroll animation
+                    observer.observe(projectCard);
                 });
             } catch (error) {
                 console.error('Error fetching GitHub repos:', error);
                 const projectsGrid = document.querySelector('.projects-grid');
-                projectsGrid.innerHTML = `<p style="text-align: center; color: #ff6b6b; font-size: 1.1rem; padding: 2rem;">Failed to load projects. Please try again later. Error: ${error.message}</p>`;
+                projectsGrid.innerHTML = `<p style="text-align: center; color: var(--neon-pink); font-size: 1.1rem; padding: 2rem; text-shadow: 0 0 10px var(--neon-pink);">Failed to load projects. Please try again later. Error: ${error.message}</p>`;
             }
         }
+
+        // Enhanced glitch effect for hero title
+        const heroTitle = document.querySelector('.hero-content h1 span');
+        if (heroTitle) {
+            setInterval(() => {
+                if (Math.random() > 0.95) {
+                    heroTitle.style.animation = 'glitch 0.1s infinite';
+                    setTimeout(() => {
+                        heroTitle.style.animation = 'glitch 0.3s infinite';
+                    }, 200);
+                }
+            }, 1000);
+        }
+
+        // Random color shifts for project cards
+        setInterval(() => {
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach(card => {
+                if (Math.random() > 0.98) {
+                    const colors = ['var(--neon-cyan)', 'var(--neon-pink)', 'var(--neon-purple)', 'var(--neon-green)'];
+                    const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                    card.style.borderColor = randomColor;
+                    setTimeout(() => {
+                        card.style.borderColor = 'var(--glass-border)';
+                    }, 500);
+                }
+            });
+        }, 2000);
 
         document.addEventListener('DOMContentLoaded', fetchGithubRepos);
     </script>
